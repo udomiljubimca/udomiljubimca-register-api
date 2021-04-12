@@ -27,7 +27,7 @@ class Make(): #main class
 
         keycloak_admin = KeycloakAdmin(server_url="http://localhost:8080/auth/",
                                     username="admin",
-                                    password="Pa565w0rd",
+                                    password="",
                                     realm_name="master",
                                     verify=True)
         keycloak_admin.realm_name = "Clients"
