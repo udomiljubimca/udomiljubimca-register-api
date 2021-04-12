@@ -40,12 +40,11 @@ app = FastAPI()
 usr = []
 
 
-@app.get("/index")
+@app.get("/health")
 async def index():
-    
-    return {"msg" : "Hello world from Python"}
+    return {"HEALTH" : "OK"}
 
-@app.post("/register/")
+@app.post("/register")
 async def register(item : Item):
 
     if any(x['username'] == item.username for x in usr):
