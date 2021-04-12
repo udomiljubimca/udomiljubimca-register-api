@@ -7,9 +7,12 @@ RUN pip install --no-cache-dir -r /app/requirements.txt && \
 
 ADD ./server.sh ./src /app/
 
-ENV FLASK_ENV=development
+ENV FLASK_ENV="development"
 ENV KYECLOAK_ADMIN_USER="admin"
 ENV KYECLOAK_ADMIN_PASSWORD=""
+ENV CLIENT_RELM_SECRET=""
+ENV CLIENT_RELM_NAME="udomiljubimcadev"
+
 
 WORKDIR /app
 
