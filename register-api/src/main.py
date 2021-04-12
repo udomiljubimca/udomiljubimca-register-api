@@ -16,6 +16,7 @@ class Item(BaseModel):
     enabled : str
     firstName : str
     lastName : str
+    secret: str
 
 @app.get("/health")
 async def index():
@@ -23,8 +24,8 @@ async def index():
 
 @app.post("/register")
 async def newreg(item:Item):
-    CreateUser(item.email, item.username, item.enabled, item.firstName, item.lastName).new_user()
+    CreateUser(item.email, item.username, item.enabled, item.firstName, item.lastName, item.secret).new_user()
     return {"REGISTRATION" : "SUCCESSFUL"}
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=8081, loop="asyncio")
+    uvicorn.run(app, port=8080, loop="asyncio")
