@@ -1,0 +1,6 @@
+fastapi==0.8.0
+uvicorn==0.13.4
+PyJWT==1.7.1
+requests
+pydantic
+python-keycloak==0.24.0
