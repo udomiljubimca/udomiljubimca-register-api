@@ -25,8 +25,11 @@ async def index():
 
 @app.post("/register")
 async def register(item:Item):
-    print(CreateUser(item.email, item.username, item.enabled, item.firstName, item.lastName, item.secret).checker())
-    CreateUser(item.email, item.username, item.enabled, item.firstName, item.lastName, item.secret).new_user()
+    checkerica = CreateUser(item.email, item.username, item.enabled, item.firstName, item.lastName, item.secret).checker()
+    if checkerica['exist'] == False:
+        CreateUser(item.email, item.username, item.enabled, item.firstName, item.lastName, item.secret).new_user()
+    else:
+        raise HTTPException(status_code = 401, detail = "user already exists")
 
 if __name__ == "__main__":
     uvicorn.run(app, port=8080, loop="asyncio")
