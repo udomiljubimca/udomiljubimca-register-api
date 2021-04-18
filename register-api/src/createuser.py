@@ -28,13 +28,17 @@ class CreateUser():
 
         users = keycloak_admin.get_users()
         emails = []
-        for email in users:
-            emails.append(email["email"])
+        list_users = []
 
-        if self.email in emails:
+        for x in users:
+            emails.append(x["email"])
+            list_users.append(x["username"])
+
+        if self.email in emails or self.username in list_users:
             return {"exist": True}
         else:
             return {"exist": False}
+
 
     def new_user(self):
         KeycloakOpenID(server_url = "http://nginx/auth/",

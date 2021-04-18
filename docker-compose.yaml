@@ -40,7 +40,6 @@ services:
     container_name: nginx
     build:
       context: ./nginx-proxy
-    image: nginx:alpine
     ports:
     - 80:80
     networks:
