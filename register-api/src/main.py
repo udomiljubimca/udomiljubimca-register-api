@@ -4,12 +4,12 @@ import uvicorn
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
 from createuser import CreateUser
-
+from docs import register_api_docs
 
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
-app = FastAPI()
+app = FastAPI(openapi_tags = register_api_docs)
 
 class Item(BaseModel):
     email : str
@@ -19,11 +19,11 @@ class Item(BaseModel):
     lastName : str
     secret: str
 
-@app.get("/health")
+@app.get("/health", tags = ["Provera zdravlja"])
 async def index():
     return {"HEALTH" : "OK"}
 
-@app.post("/register")
+@app.post("/register", tags = ["Registracija"])
 async def register(item:Item):
     checkerica = CreateUser(item.email, item.username, item.enabled, item.firstName, item.lastName, item.secret).checker()
     if checkerica['exist'] == False:
