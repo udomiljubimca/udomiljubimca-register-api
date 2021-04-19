@@ -2,10 +2,10 @@ register_api_docs = [
 
     {
         "name" : "Registracija",
-        "description" : "Ovo je ruta ge se kreira user. Informacije o useru se upisuju u json"
+        "description" : "Ova ruta kreira usera na keycloak-u takodje ima proveru da li user postoji(username, email)."
     },
     {
-        "name" : "Provera zdravlja",
-        "description" : "Ovo je ruta za proveru da li radi api. Ako je radi vraca ok"
+        "name" : "Provera rada aplikacije",
+        "description" : "Ova ruta proverava da li servis radi."
     }
 ]
