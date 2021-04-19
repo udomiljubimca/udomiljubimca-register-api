@@ -1,0 +1,19 @@
+name: Build/Push Register API image to Docker Hub
+on:
+  push:
+    paths: 'register-api/**'
+    branches:
+      - develop
+jobs:
+  build-and-push-docker-image:
+    name: Build and push docker image
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build and push docker image
+      uses: actions/checkout@master
+    - run: |
+        export TAG=$(cat register-api/VERSION)
+        cd register-api
+        docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_PASSWORD }}
+        docker build -t udomiljubimca/register-api:$TAG .
+        docker push udomiljubimca/register-api:$TAG
