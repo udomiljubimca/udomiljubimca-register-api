@@ -32,5 +32,6 @@ async def register(item:Item):
     else:
         raise HTTPException(status_code = 409, detail = "User already exists")
 
+
 if __name__ == "__main__":
     uvicorn.run(app, port=8080, loop="asyncio")
