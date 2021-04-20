@@ -2,7 +2,7 @@ from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
 
-from fastapi import HTTPException
+
 
 class CreateUser():
     def __init__(self, email, username, enabled, firstName, lastName, secret):
@@ -13,13 +13,13 @@ class CreateUser():
         self.lastName = lastName
         self.secret = secret
     def checker(self):
-        KeycloakOpenID(server_url = "http://nginx/auth/",
-                        client_id = "app",
+        KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
+                        client_id = os.getenv('KEYCLOAK_CLIENT_NAME'),
                         realm_name = os.getenv('CLIENT_RELM_NAME'),
                         client_secret_key = os.getenv('CLIENT_RELM_SECRET')
                         )
 
-        keycloak_admin = KeycloakAdmin(server_url="http://nginx/auth/",
+        keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KYECLOAK_ADMIN_USER'),
                                 password = os.getenv('KYECLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
@@ -41,13 +41,13 @@ class CreateUser():
 
 
     def new_user(self):
-        KeycloakOpenID(server_url = "http://nginx/auth/",
-                        client_id = "app",
+        KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
+                        client_id = os.getenv('KEYCLOAK_CLIENT_NAME'),
                         realm_name = os.getenv('CLIENT_RELM_NAME'),
                         client_secret_key = os.getenv('CLIENT_RELM_SECRET')
                         )
 
-        keycloak_admin = KeycloakAdmin(server_url="http://nginx/auth/",
+        keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KYECLOAK_ADMIN_USER'),
                                 password = os.getenv('KYECLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
@@ -66,5 +66,3 @@ class CreateUser():
                         }
                     ]
                     })
-        # else:
-        #     return HTTPException(status_code=403, detail="User alredy exist!")
