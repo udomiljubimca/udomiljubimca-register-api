@@ -19,7 +19,7 @@ class Item(BaseModel):
     lastName : str
     secret: str
 
-@app.get("/health", tags = ["Provera zdravlja"])
+@app.get("/health", tags = ["Provera rada aplikacije"])
 async def index():
     return {"HEALTH" : "OK"}
 
@@ -31,6 +31,7 @@ async def register(item:Item):
         return {"Msg" : "The user has been successfully created!"}
     else:
         raise HTTPException(status_code = 409, detail = "User already exists")
+
 
 if __name__ == "__main__":
     uvicorn.run(app, port=8080, loop="asyncio")
