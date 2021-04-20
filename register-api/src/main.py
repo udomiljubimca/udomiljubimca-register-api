@@ -19,7 +19,7 @@ class Item(BaseModel):
     lastName : str
     secret: str
 
-@app.get("/health", tags = ["Provera zdravlja"])
+@app.get("/health", tags = ["Provera rada aplikacije"])
 async def index():
     return {"HEALTH" : "OK"}
 
