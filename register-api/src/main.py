@@ -9,7 +9,7 @@ from docs import register_api_docs
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
-app = FastAPI(openapi_tags = register_api_docs)
+app = FastAPI(openapi_tags = register_api_docs, openapi_url = "/api/latest/register-api/openapi.json")
 
 class Item(BaseModel):
     email : str
