@@ -5,10 +5,9 @@ import os
 
 
 class CreateUser():
-    def __init__(self, email, username, enabled, firstName, lastName, secret):
+    def __init__(self, email, username, firstName, lastName, secret):
         self.email = email
         self.username = username
-        self.enabled = enabled
         self.firstName = firstName
         self.lastName = lastName
         self.secret = secret
@@ -56,7 +55,7 @@ class CreateUser():
 
         keycloak_admin.create_user({"email": self.email,
                     "username": self.username,
-                    "enabled": self.enabled,
+                    "enabled": "True",
                     "firstName": self.firstName,
                     "lastName": self.lastName,
                     "credentials": [
