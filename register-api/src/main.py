@@ -27,7 +27,7 @@ async def register(item:Item):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     if checkerica['exist'] == False:
         CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).new_user()
-        return {"Msg" : "The user has been successfully created!"}
+        return {"message" : "The user has been successfully created!"}
     else:
         raise HTTPException(status_code = 409, detail = "User already exists")
 
