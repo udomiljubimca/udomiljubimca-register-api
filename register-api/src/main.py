@@ -19,7 +19,7 @@ class Item(BaseModel):
     secret: str
 class Item_for_resend(BaseModel):
     username : str
-@app.post("/resend_email")
+@app.post("/resend-email")
 async def resend_email(item : Item_for_resend):
     check_user_id_for_resend = Resend_verify_email(item.username).resend(item.username)
     print(check_user_id_for_resend)
