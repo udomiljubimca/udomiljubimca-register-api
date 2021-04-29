@@ -19,13 +19,12 @@ class Item(BaseModel):
     secret: str
 class Item_for_resend(BaseModel):
     username : str
-@app.post("/resend-email")
+@app.post("/resend-email", tags = ["Ponovo posalji email verifikaciju"])
 async def resend_email(item : Item_for_resend):
     check_user_id_for_resend = Resend_verify_email(item.username).resend(item.username)
     print(check_user_id_for_resend)
     if check_user_id_for_resend['exist'] == False:
-        print("username does not exist")
-        return {"message" : "username does not exist"}
+        raise HTTPException(status_code = 404, detail = "username does not exist")
     else:
         Resend_verify_email(item.username).send(check_user_id_for_resend['user_id_keycloak'])
         return {"message" : "The email has been successfully sent!"}
