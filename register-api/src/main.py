@@ -6,7 +6,8 @@ from pydantic import BaseModel
 from createuser import CreateUser
 from docs import register_api_docs
 from resend_email import Resend_verify_email
-from typing import Optional
+#from typing import Optional
+from create_association import CreateAssociation
 
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
@@ -24,17 +25,26 @@ class Item_for_resend(BaseModel):
     username : str
 
 class Item_association(BaseModel):
-    username_association : str
     email : str
-    register_number_association : str
+    username_association : str
     secret : str
-    place : str
-    number : int
-    web_site : Optional(str)
-
+  
 @app.post("/register-association", tags = ["Registracija"])
-async def register_association(item:Item_association):
-    return "hey"
+async def register_association(item : Item_association):
+    checkerica = CreateAssociation(item.email, item.username_association, item.secret).checker()
+    if checkerica['exist'] == False:
+        CreateAssociation(item.email, item.username_association, item.secret).new_association()
+        check_user_id = CreateAssociation(item.email, item.username_association, item.secret).get_keycloak_user_id()
+        if check_user_id["exist"] == False:
+            print("association does not exist")
+        else:
+            CreateAssociation(item.email, item.username_association, item.secret).verify_email(check_user_id['user_id_keycloak'])
+            print("The email has been successfully sent!")
+            return {"message" : "The user has been successfully created!"}
+    else:
+        raise HTTPException(status_code = 409, detail = "User already exists")
+        
+    
 
 
 @app.post("/resend-email", tags = ["Ponovo posalji email verifikaciju"])
