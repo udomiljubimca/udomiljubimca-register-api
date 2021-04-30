@@ -13,8 +13,8 @@ class CreateUser():
         self.secret = secret
     def get_keycloak_user_id(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
-                                username = os.getenv('KYECLOAK_ADMIN_USER'),
-                                password = os.getenv('KYECLOAK_ADMIN_PASSWORD'),
+                                username = os.getenv('KEYECLOAK_ADMIN_USER'),
+                                password = os.getenv('KEYECLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
@@ -26,8 +26,8 @@ class CreateUser():
             return {"exist" : True, "user_id_keycloak" : user_id_keycloak}
     def verify_email(self, user_id_keycloak):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
-                                username = os.getenv('KYECLOAK_ADMIN_USER'),
-                                password = os.getenv('KYECLOAK_ADMIN_PASSWORD'),
+                                username = os.getenv('KEYECLOAK_ADMIN_USER'),
+                                password = os.getenv('KEYECLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
@@ -41,8 +41,8 @@ class CreateUser():
                         )
 
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
-                                username = os.getenv('KYECLOAK_ADMIN_USER'),
-                                password = os.getenv('KYECLOAK_ADMIN_PASSWORD'),
+                                username = os.getenv('KEYECLOAK_ADMIN_USER'),
+                                password = os.getenv('KEYECLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
@@ -69,8 +69,8 @@ class CreateUser():
                         )
 
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
-                                username = os.getenv('KYECLOAK_ADMIN_USER'),
-                                password = os.getenv('KYECLOAK_ADMIN_PASSWORD'),
+                                username = os.getenv('KEYECLOAK_ADMIN_USER'),
+                                password = os.getenv('KEYECLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')

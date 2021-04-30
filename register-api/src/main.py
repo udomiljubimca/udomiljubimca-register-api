@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from createuser import CreateUser
 from docs import register_api_docs
 from resend_email import Resend_verify_email
+
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
@@ -19,6 +20,7 @@ class Item(BaseModel):
     secret: str
 class Item_for_resend(BaseModel):
     username : str
+
 @app.post("/resend-email", tags = ["Ponovo posalji email verifikaciju"])
 async def resend_email(item : Item_for_resend):
     check_user_id_for_resend = Resend_verify_email(item.username).resend(item.username)
@@ -33,8 +35,8 @@ async def resend_email(item : Item_for_resend):
 async def index():
     return {"HEALTH" : "OK"}
 
-@app.post("/register", tags = ["Registracija"])
-async def register(item:Item):
+@app.post("/register-user", tags = ["Registracija"])
+async def register_user(item:Item):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     
     if checkerica['exist'] == False:
