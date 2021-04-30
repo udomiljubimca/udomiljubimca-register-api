@@ -36,7 +36,7 @@ async def index():
     return {"HEALTH" : "OK"}
 
 @app.post("/register-user", tags = ["Registracija"])
-async def register(item:Item):
+async def register_user(item:Item):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     
     if checkerica['exist'] == False:
