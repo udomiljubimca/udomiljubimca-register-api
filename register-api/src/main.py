@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from createuser import CreateUser
 from docs import register_api_docs
 from resend_email import Resend_verify_email
+from typing import Optional
 
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
@@ -18,8 +19,23 @@ class Item(BaseModel):
     firstName : str
     lastName : str
     secret: str
+
 class Item_for_resend(BaseModel):
     username : str
+
+class Item_association(BaseModel):
+    username_association : str
+    email : str
+    register_number_association : str
+    secret : str
+    place : str
+    number : int
+    web_site : Optional(str)
+
+@app.post("/register-association", tags = ["Registracija"])
+async def register_association(item:Item_association):
+    return "hey"
+
 
 @app.post("/resend-email", tags = ["Ponovo posalji email verifikaciju"])
 async def resend_email(item : Item_for_resend):
