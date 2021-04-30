@@ -7,8 +7,8 @@ RUN pip install --no-cache-dir -r /app/requirements.txt && \
     chmod -R g=u /app
 
 ENV FLASK_ENV="development"
-ENV KEYECLOAK_ADMIN_USER="admin"
-ENV KEYECLOAK_ADMIN_PASSWORD=""
+ENV KEYCLOAK_ADMIN_USER="admin"
+ENV KEYCLOAK_ADMIN_PASSWORD=""
 ENV CLIENT_RELM_SECRET=""
 ENV CLIENT_RELM_NAME="udomiljubimcadev"
 ENV KEYCLOAK_URL="http://nginx"
