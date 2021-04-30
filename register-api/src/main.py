@@ -9,7 +9,7 @@ from resend_email import Resend_verify_email
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
-app = FastAPI(openapi_tags = register_api_docs, openapi_url = "/api/latest/register-api/openapi.json")
+app = FastAPI(openapi_tags = register_api_docs, openapi_prefix = "/api/latest/register-api")
 
 class Item(BaseModel):
     email : str
