@@ -1,4 +1,4 @@
-Register-API upotreba
+# Register-API upotreba
 
 Ovo je upuctvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
 
@@ -6,7 +6,7 @@ Ovo je upuctvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes d
 -http://localhost:8081/docs#/ (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima, 
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
--health:
+- health:
     Postman: http://udomi-ljubimca.com.internal/health >> metoda[GET] >> vraca {"HEALTH": "OK"}
 
     Terminal: curl -X 'GET' 'http://localhost:8081/health' -H 'accept: application/json' >> vraca {"HEALTH": "OK"}
