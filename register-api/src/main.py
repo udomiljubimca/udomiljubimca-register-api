@@ -42,7 +42,7 @@ async def register_association(item : Item_association):
             print("The email has been successfully sent!")
             return {"message" : "The association has been successfully created!"}
     else:
-        raise HTTPException(status_code = 409, detail = "User already exists")
+        raise HTTPException(status_code = 409, detail = "association already exists")
         
     
 
