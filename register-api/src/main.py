@@ -28,7 +28,7 @@ class Item_association(BaseModel):
     email : str
     username_association : str
     secret : str
-  
+
 @app.post("/register-association", tags = ["Registracija udruzenja"])
 async def register_association(item : Item_association):
     checkerica = CreateAssociation(item.email, item.username_association, item.secret).checker()
