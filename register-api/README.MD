@@ -1,4 +1,4 @@
-Register-API upotreba
+# Register-API upotreba
 
 Ovo je upuctvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
 
