@@ -7,13 +7,13 @@ Ovo je upuctvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes d
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 # health:
-    - Postman: http://udomi-ljubimca.com.internal/health >> metoda[GET] >> vraca {"HEALTH": "OK"}
+    - **Postman**: http://udomi-ljubimca.com.internal/health >> metoda[GET] >> vraca {"HEALTH": "OK"}
 
-    - Terminal: curl -X 'GET' 'http://localhost:8081/health' -H 'accept: application/json' >> vraca {"HEALTH": "OK"}
+    - **Terminal**: curl -X 'GET' 'http://localhost:8081/health' -H 'accept: application/json' >> vraca {"HEALTH": "OK"}
 
-    - Beleksa: Ako koristits http://localhost:8081/docs#/ >> stisni na endpoint health[GET] >> try it out >> execute >> vraca {"HEALTH": "OK"}
+    - **Beleksa**: Ako koristits http://localhost:8081/docs#/ >> stisni na endpoint health[GET] >> try it out >> execute >> vraca {"HEALTH": "OK"}
 
-    Response: 200
+    **Response**: 200
 
 # register-user:
     - Postman: http://udomi-ljubimca.com.internal/register-user >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
