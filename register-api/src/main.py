@@ -40,7 +40,7 @@ async def register_association(item : Item_association):
         else:
             CreateAssociation(item.email, item.username_association, item.secret).verify_email(check_user_id['user_id_keycloak'])
             print("The email has been successfully sent!")
-            return {"message" : "The user has been successfully created!"}
+            return {"message" : "The association has been successfully created!"}
     else:
         raise HTTPException(status_code = 409, detail = "User already exists")
         
