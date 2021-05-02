@@ -1,8 +1,8 @@
 # Register-API upotreba
 
-Ovo je upuctvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
+- Ovo je upuctvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
 
-- <http://localhost:8081/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima, 
+- <http://localhost:8081/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 ## health
