@@ -13,7 +13,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
     - **Beleksa**: Ako koristits http://localhost:8081/docs#/ >> stisni na endpoint health[GET] >> try it out >> execute >> vraca {"HEALTH": "OK"}
 
-    **Response**: 200
+    - **Response**: 200
 
 # register-user:
     - Postman: http://udomi-ljubimca.com.internal/register-user >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
