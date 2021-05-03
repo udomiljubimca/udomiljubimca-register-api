@@ -4,4 +4,4 @@ PyJWT==1.7.1
 requests
 pydantic
 python-keycloak==0.24.0
-typing == 3.7.4.3
+regex == 2021.4.4 
