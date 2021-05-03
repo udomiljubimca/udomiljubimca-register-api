@@ -43,8 +43,8 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 - **Response**: 200
 
-- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"})
-- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
+- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"}).
+- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila.
 
 ## resend-email
 
@@ -64,8 +64,8 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 - **Response**: 200
 
-- Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"})
-- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
+- Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"}).
+- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila.
 
 ## register-association
 
@@ -91,5 +91,5 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 - **Response**: 200
 
-- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "association already exists"})
-- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
+- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "association already exists"}).
+- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila.
