@@ -9,10 +9,11 @@ from resend_email import Resend_verify_email
 #from typing import Optional
 from create_association import CreateAssociation
 
+from is_email import Is_email_valid
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
-app = FastAPI(openapi_tags = register_api_docs, openapi_url = "/api/latest/register-api/openapi.json")
+app = FastAPI(openapi_tags = register_api_docs, openapi_prefix = "/api/latest/register-api")
 
 class Item(BaseModel):
     email : str
@@ -64,18 +65,20 @@ async def index():
 @app.post("/register-user", tags = ["Registracija"])
 async def register_user(item:Item):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
-    
-    if checkerica['exist'] == False:
-        CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).new_user()
-        check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
-        if check_user_id["exist"] == False:
-            print("user does not exist")
+    checkerica_email = Is_email_valid(item.email).check()
+    if checkerica_email['exist'] == True:
+        if checkerica['exist'] == False:
+            CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).new_user()
+            check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
+            if check_user_id["exist"] == False:
+                print("user does not exist")
+            else:
+                CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).verify_email(check_user_id["user_id_keycloak"])
+                print("The email has been successfully sent!")
+            return {"message" : "The user has been successfully created!"}
         else:
-            CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).verify_email(check_user_id["user_id_keycloak"])
-            print("The email has been successfully sent!")
-        return {"message" : "The user has been successfully created!"}
+            raise HTTPException(status_code = 409, detail = "User already exists")
     else:
-        raise HTTPException(status_code = 409, detail = "User already exists")
-
+        raise HTTPException(status_code = 404, detail = "Email not found")
 if __name__ == "__main__":
     uvicorn.run(app, port=8080, loop="asyncio")

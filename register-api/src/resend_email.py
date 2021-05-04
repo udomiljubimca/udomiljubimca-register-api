@@ -10,8 +10,8 @@ class Resend_verify_email():
 
     def resend(self, username):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
-                                username = os.getenv('KEYECLOAK_ADMIN_USER'),
-                                password = os.getenv('KEYECLOAK_ADMIN_PASSWORD'),
+                                username = os.getenv('KEYCLOAK_ADMIN_USER'),
+                                password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
@@ -22,8 +22,8 @@ class Resend_verify_email():
             return {"exist" : True, "user_id_keycloak" : user_id_keycloak}
     def send(self, user_id_keycloak):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
-                                username = os.getenv('KEYECLOAK_ADMIN_USER'),
-                                password = os.getenv('KEYECLOAK_ADMIN_PASSWORD'),
+                                username = os.getenv('KEYCLOAK_ADMIN_USER'),
+                                password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
