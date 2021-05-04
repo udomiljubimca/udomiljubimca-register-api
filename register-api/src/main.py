@@ -33,17 +33,21 @@ class Item_association(BaseModel):
 @app.post("/register-association", tags = ["Registracija udruzenja"])
 async def register_association(item : Item_association):
     checkerica = CreateAssociation(item.email, item.username_association, item.secret).checker()
-    if checkerica['exist'] == False:
-        CreateAssociation(item.email, item.username_association, item.secret).new_association()
-        check_user_id = CreateAssociation(item.email, item.username_association, item.secret).get_keycloak_user_id()
-        if check_user_id["exist"] == False:
-            print("association does not exist")
+    checkerica_email = Is_email_valid(item.email).check()
+    if checkerica_email['exist'] == True:
+        if checkerica['exist'] == False:
+            CreateAssociation(item.email, item.username_association, item.secret).new_association()
+            check_user_id = CreateAssociation(item.email, item.username_association, item.secret).get_keycloak_user_id()
+            if check_user_id["exist"] == False:
+                print("association does not exist")
+            else:
+                CreateAssociation(item.email, item.username_association, item.secret).verify_email(check_user_id['user_id_keycloak'])
+                print("The email has been successfully sent!")
+                return {"message" : "The association has been successfully created!"}
         else:
-            CreateAssociation(item.email, item.username_association, item.secret).verify_email(check_user_id['user_id_keycloak'])
-            print("The email has been successfully sent!")
-            return {"message" : "The association has been successfully created!"}
+            raise HTTPException(status_code = 409, detail = "association already exists")
     else:
-        raise HTTPException(status_code = 409, detail = "association already exists")
+        raise HTTPException(status_code = 404, detail = "Email not found")
         
     
 
