@@ -1,7 +1,7 @@
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
-
+from is_email import Is_email_valid
 
 
 class CreateUser():
@@ -74,16 +74,20 @@ class CreateUser():
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
+        email_check = Is_email_valid(self.email).check()
 
-        keycloak_admin.create_user({"email": self.email,
-                    "username": self.username,
-                    "enabled": "True",
-                    "firstName": self.firstName,
-                    "lastName": self.lastName,
-                    "credentials": [
-                        {
-                            "value": self.secret,
-                            "type": "password"
-                        }
-                    ]
-                    })
+        if email_check['exist'] == True:
+            keycloak_admin.create_user({"email": self.email,
+                        "username": self.username,
+                        "enabled": "True",
+                        "firstName": self.firstName,
+                        "lastName": self.lastName,
+                        "credentials": [
+                            {
+                                "value": self.secret,
+                                "type": "password"
+                            }
+                        ]
+                        })
+        else:
+            return {"is_email" : False}
