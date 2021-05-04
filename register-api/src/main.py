@@ -7,6 +7,7 @@ from createuser import CreateUser
 from docs import register_api_docs
 from resend_email import Resend_verify_email
 #from typing import Optional
+from create_association import CreateAssociation
 
 from is_email import Is_email_valid
 logger = logging.getLogger(__name__)
@@ -20,9 +21,36 @@ class Item(BaseModel):
     firstName : str
     lastName : str
     secret: str
-    
+
 class Item_for_resend(BaseModel):
     username : str
+
+class Item_association(BaseModel):
+    email : str
+    username_association : str
+    secret : str
+
+@app.post("/register-association", tags = ["Registracija udruzenja"])
+async def register_association(item : Item_association):
+    checkerica = CreateAssociation(item.email, item.username_association, item.secret).checker()
+    checkerica_email = Is_email_valid(item.email).check()
+    if checkerica_email['exist'] == True:
+        if checkerica['exist'] == False:
+            CreateAssociation(item.email, item.username_association, item.secret).new_association()
+            check_user_id = CreateAssociation(item.email, item.username_association, item.secret).get_keycloak_user_id()
+            if check_user_id["exist"] == False:
+                print("association does not exist")
+            else:
+                CreateAssociation(item.email, item.username_association, item.secret).verify_email(check_user_id['user_id_keycloak'])
+                print("The email has been successfully sent!")
+                return {"message" : "The association has been successfully created!"}
+        else:
+            raise HTTPException(status_code = 409, detail = "association already exists")
+    else:
+        raise HTTPException(status_code = 404, detail = "Email not found")
+        
+    
+
 
 @app.post("/resend-email", tags = ["Ponovo posalji email verifikaciju"])
 async def resend_email(item : Item_for_resend):
