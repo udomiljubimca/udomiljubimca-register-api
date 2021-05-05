@@ -4,6 +4,8 @@
   
 ![image_for_md.png](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/fix/README.md/imgs_docs/image_for_md.png)
 
+- Pre testiranja potrebno je da se ugradi addon sa ovog linka <https://addons.mozilla.org/en-US/firefox/addon/modify-header-value/> i da se podesi kao na slici iznad(secret-key nije javno dostupan).
+
 - <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
