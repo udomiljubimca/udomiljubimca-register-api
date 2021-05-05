@@ -2,7 +2,7 @@
 
 - Ovo je upustvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
   
-![image_for_md.png]( udomiljubimca-register-api/imgs_docs/image_for_md.png)
+![image_for_md.png](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/fix/README.md/imgs_docs/image_for_md.png)
 
 - <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
