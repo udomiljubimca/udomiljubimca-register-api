@@ -1,15 +1,13 @@
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
-from is_email import Is_email_valid
+from is_email import Is_email_valid  
 
 
-class CreateUser():
-    def __init__(self, email, username, firstName, lastName, secret):
+class CreateAssociation():
+    def __init__(self, email, username_association, secret):
         self.email = email
-        self.username = username
-        self.firstName = firstName
-        self.lastName = lastName
+        self.username_association = username_association
         self.secret = secret
     def get_keycloak_user_id(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
@@ -18,7 +16,7 @@ class CreateUser():
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
-        user_id_keycloak = keycloak_admin.get_user_id(self.username)
+        user_id_keycloak = keycloak_admin.get_user_id(self.username_association)
         if user_id_keycloak == None:
             return {"exist" : False}
         else:
@@ -55,13 +53,13 @@ class CreateUser():
             emails.append(x["email"])
             list_users.append(x["username"])
 
-        if self.email in emails or self.username in list_users:
+        if self.email in emails or self.username_association in list_users:
             return {"exist": True}
         else:
             return {"exist": False}
 
 
-    def new_user(self):
+    def new_association(self):
         KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                         client_id = os.getenv('KEYCLOAK_CLIENT_NAME'),
                         realm_name = os.getenv('CLIENT_RELM_NAME'),
@@ -78,10 +76,8 @@ class CreateUser():
 
         if email_check['exist'] == True:
             keycloak_admin.create_user({"email": self.email,
-                        "username": self.username,
+                        "username": self.username_association,
                         "enabled": "True",
-                        "firstName": self.firstName,
-                        "lastName": self.lastName,
                         "credentials": [
                             {
                                 "value": self.secret,
@@ -90,4 +86,4 @@ class CreateUser():
                         ]
                         })
         else:
-            return {"is_email" : False}
+            return{"exist" : False}

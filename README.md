@@ -42,7 +42,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
             "lastName" : "exemple",
             "secret" : "exemple"
         }'  >> vraca {"message": "The user has been successfully created!"} i salje na email verifikaciju
-
+        
 - **Beleksa**: Ako koristits <http://149.81.126.136/api/latest/register-api/docs#/> stisni na endpoint register-user[POST] >> try it out >> popunis json >> execute >> vraca /
             {"message": "The user has been successfully created!"} i salje na email verifikaciju
 
@@ -83,6 +83,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 - **Terminal**: curl -X 'POST' \
         'http://149.81.126.136/api/latest/register-api/register-association' \
+
         -H 'accept: application/json' \
         -H 'Content-Type: application/json' \
         -d '{
