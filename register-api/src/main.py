@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from createuser import CreateUser
 from docs import register_api_docs
 from resend_email import Resend_verify_email
-#from typing import Optional
+from typing import Optional
 from create_association import CreateAssociation
 
 from is_email import Is_email_valid
@@ -28,7 +28,12 @@ class Item_for_resend(BaseModel):
 class Item_association(BaseModel):
     email : str
     username_association : str
+    number_association : Optional[int] = None
+    place : Optional[str] = None
+    phone_number : Optional[int] = None
+    web : Optional[str] = None
     secret : str
+
 
 @app.post("/register-association", tags = ["Registracija udruzenja"])
 async def register_association(item : Item_association):
@@ -43,11 +48,11 @@ async def register_association(item : Item_association):
             else:
                 CreateAssociation(item.email, item.username_association, item.secret).verify_email(check_user_id['user_id_keycloak'])
                 print("The email has been successfully sent!")
-                return {"message" : "The association has been successfully created!"}
+            return {"message" : "The association has been successfully created!"}
         else:
-            raise HTTPException(status_code = 409, detail = "association already exists")
+            raise HTTPException(status_code = 409, detail = "Association already exists")
     else:
-        raise HTTPException(status_code = 404, detail = "Email not found")
+        raise HTTPException(status_code = 406, detail = "Email is not acceptable")
         
     
 
@@ -83,6 +88,6 @@ async def register_user(item:Item):
         else:
             raise HTTPException(status_code = 409, detail = "User already exists")
     else:
-        raise HTTPException(status_code = 404, detail = "Email not found")
+        raise HTTPException(status_code = 406, detail = "Email is not acceptable")
 if __name__ == "__main__":
     uvicorn.run(app, port=8080, loop="asyncio")
