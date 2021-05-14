@@ -73,6 +73,7 @@ async def index():
 
 @app.post("/register-user", tags = ["Registracija"])
 async def register_user(item:Item):
+    CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).keycloak_roles()
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
     if checkerica_email['exist'] == True:
