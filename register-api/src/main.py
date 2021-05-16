@@ -43,6 +43,7 @@ async def register_association(item : Item_association):
         if checkerica['exist'] == False:
             CreateAssociation(item.email, item.username_association, item.secret).new_association()
             check_user_id = CreateAssociation(item.email, item.username_association, item.secret).get_keycloak_user_id()
+            CreateAssociation(item.email, item.username_association, item.secret).assign_keycloak_roles()
             if check_user_id["exist"] == False:
                 print("association does not exist")
             else:
