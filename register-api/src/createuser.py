@@ -12,7 +12,19 @@ class CreateUser():
         self.firstName = firstName
         self.lastName = lastName
         self.secret = secret
-    def create_keycloak_roles(self):  
+    # def create_keycloak_roles(self):  
+    #     keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
+    #                             username = os.getenv('KEYCLOAK_ADMIN_USER'),
+    #                             password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
+    #                             realm_name = "master",
+    #                             verify = True)
+    #     keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
+    #     client_id = keycloak_admin.get_client_id(os.getenv('KEYCLOAK_CLIENT_NAME'))
+    #     try:
+    #         create_role = keycloak_admin.create_client_role(client_role_id=client_id, payload={'name': 'user_role', 'clientRole': True}) 
+    #     except:
+    #         print("Role with name user_role already exists")
+    def assign_keycloak_roles(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KEYCLOAK_ADMIN_USER'),
                                 password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
@@ -20,10 +32,7 @@ class CreateUser():
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
         client_id = keycloak_admin.get_client_id(os.getenv('KEYCLOAK_CLIENT_NAME'))
-        try:
-            create_role = keycloak_admin.create_client_role(client_role_id=client_id, payload={'name': 'user_role', 'clientRole': True}) 
-        except:
-            print("Role with name user_role already exists")
+
         user_id = keycloak_admin.get_user_id(self.username)
         role_id = keycloak_admin.get_client_role_id(client_id=client_id, role_name="user_role")
         add_role = keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'user_role'}])
