@@ -79,6 +79,7 @@ async def register_user(item:Item):
         if checkerica['exist'] == False:
             CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).new_user()
             check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
+            CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).assign_keycloak_roles()
             if check_user_id["exist"] == False:
                 print("user does not exist")
             else:
