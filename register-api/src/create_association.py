@@ -3,6 +3,7 @@ from keycloak import KeycloakAdmin
 import os
 from is_email import Is_email_valid  
 
+
 class CreateAssociation():
     def __init__(self, email, username_association, secret):
         self.email = email
