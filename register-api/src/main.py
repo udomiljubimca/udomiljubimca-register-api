@@ -34,7 +34,7 @@ class ItemAssociation(BaseModel):
     web : Optional[str] = None
     secret : str
     @validator("username")
-    def name_must_contain_space(self, cls, v):
+    def name_must_be_lowercase(cls, v):
         return v.lower()
 
 
