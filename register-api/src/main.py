@@ -53,6 +53,7 @@ class ItemAssociation(BaseModel):
 async def index():
     return {"HEALTH" : "OK"}
 
+@app.post("/register-user", tags = ["Registracija"])
 async def register_user(item : ItemUser):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
