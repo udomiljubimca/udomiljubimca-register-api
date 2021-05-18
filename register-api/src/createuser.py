@@ -22,7 +22,7 @@ class CreateUser():
         user_id = keycloak_admin.get_user_id(self.username)
         role_id = keycloak_admin.get_client_role_id(client_id=client_id, role_name="user_role")
         keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'user_role'}])
-        
+
     def get_keycloak_user_id(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KEYCLOAK_ADMIN_USER'),
@@ -86,7 +86,7 @@ class CreateUser():
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
         email_check = Is_email_valid(self.email).check()
-        
+
         if email_check['exist'] == True:
             keycloak_admin.create_user({"email": self.email,
                         "username": self.username,
