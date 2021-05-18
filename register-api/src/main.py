@@ -8,9 +8,8 @@ from docs import register_api_docs
 from resend_email import Resend_verify_email
 from typing import Optional
 from create_association import CreateAssociation
-import os
-
 from is_email import Is_email_valid
+
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
@@ -29,10 +28,10 @@ class Item_for_resend(BaseModel):
 class Item_association(BaseModel):
     email : str
     username : str
-    number_association : Optional[int] = None
-    place : Optional[str] = None
-    phone_number : Optional[int] = None
-    web : Optional[str] = None
+    # number_association : Optional[int] = None
+    # place : Optional[str] = None
+    # phone_number : Optional[int] = None
+    # web : Optional[str] = None
     secret : str
 
 @app.get("/health", tags = ["Provera rada aplikacije"])
