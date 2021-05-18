@@ -16,22 +16,22 @@ logger.setLevel("DEBUG")
 app = FastAPI(openapi_tags = register_api_docs, openapi_prefix = "/api/latest/register-api")
 
 class ItemUser(BaseModel):
-    email : str.lower
-    username : str.lower
+    email : str
+    username : str
     firstName : str
     lastName : str
     secret: str
 
 class ItemForResend(BaseModel):
-    username : str.lower
+    username : str
 
 class ItemAssociation(BaseModel):
-    email : str.lower
-    username : str.lower
+    email : str
+    username : str
     number_association : Optional[int] = None
     place : Optional[str] = None
     phone_number : Optional[int] = None
-    web : Optional[str.lower] = None
+    web : Optional[str] = None
     secret : str
 
 @app.get("/health", tags = ["Provera rada aplikacije"])
