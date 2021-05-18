@@ -22,10 +22,10 @@ class Item(BaseModel):
     lastName : str
     secret: str
 
-class Item_for_resend(BaseModel):
+class ItemForResend(BaseModel):
     username : str
 
-class Item_association(BaseModel):
+class ItemAssociation(BaseModel):
     email : str
     username : str
     # number_association : Optional[int] = None
@@ -39,7 +39,7 @@ async def index():
     return {"HEALTH" : "OK"}
 
 @app.post("/register-user", tags = ["Registracija"])
-async def register_user(item:Item):
+async def register_user(item : Item):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
     if checkerica_email['exist'] == True:
@@ -59,7 +59,7 @@ async def register_user(item:Item):
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
 
 @app.post("/register-association", tags = ["Registracija udruzenja"])
-async def register_association(item:Item_association):
+async def register_association(item : ItemAssociation):
     checkerica = CreateAssociation(item.email, item.username, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
     if checkerica_email['exist'] == True:
@@ -79,7 +79,7 @@ async def register_association(item:Item_association):
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
 
 @app.post("/resend-email", tags = ["Ponovo posalji email verifikaciju"])
-async def resend_email(item : Item_for_resend):
+async def resend_email(item : ItemForResend):
     check_user_id_for_resend = Resend_verify_email(item.username).resend(item.username)
     print(check_user_id_for_resend)
     if check_user_id_for_resend['exist'] == False:
