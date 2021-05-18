@@ -1,13 +1,13 @@
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
-from is_email import Is_email_valid 
+from is_email import Is_email_valid
 
 class CreateAssociation():
     def __init__(self, email, username, secret):
         self.email = email
         self.username = username
-        self.secret = secret  
+        self.secret = secret
 
     def assign_keycloak_roles(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
