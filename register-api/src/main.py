@@ -53,45 +53,38 @@ class ItemAssociation(BaseModel):
 async def index():
     return {"HEALTH" : "OK"}
 
-@app.post("/register-user", tags = ["Registracija"])
 async def register_user(item : ItemUser):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
-    if checkerica_email['exist'] == True:
-        if checkerica['exist'] == False:
-            CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).new_user()
-            check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
-            if check_user_id["exist"] == False:
-                print("user does not exist")
-            else:
-                CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).assign_keycloak_roles()
-                CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).verify_email(check_user_id["user_id_keycloak"])
-                print("The email has been successfully sent!")
-            return {"message" : "The user has been successfully created!"}
-        else:
-            raise HTTPException(status_code = 409, detail = "User already exists")
-    else:
+    if checkerica_email['exist'] == True and checkerica['exist'] == False:
+        CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).new_user()
+        check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
+        CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).assign_keycloak_roles()
+        CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).verify_email(check_user_id["user_id_keycloak"])
+        return {"message" : "The user has been successfully created!"}
+    elif checkerica_email['exist'] == False:
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
+    elif checkerica['exist'] == True:
+        raise HTTPException(status_code = 409, detail = "Username or email already exists")
+    else:
+        raise HTTPException(status_code = 500, detail = "Something went wrong")
 
 @app.post("/register-association", tags = ["Registracija udruzenja"])
 async def register_association(item : ItemAssociation):
     checkerica = CreateAssociation(item.email, item.username, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
-    if checkerica_email['exist'] == True:
-        if checkerica['exist'] == False:
-            CreateAssociation(item.email, item.username, item.secret).new_association()
-            check_association_id = CreateAssociation(item.email, item.username, item.secret).get_keycloak_user_id()
-            if check_association_id["exist"] == False:
-                print("Association cannot be found or does not exist.")
-            else:
-                CreateAssociation(item.email, item.username, item.secret).assign_keycloak_roles()
-                CreateAssociation(item.email, item.username, item.secret).verify_email(check_association_id['user_id_keycloak'])
-                print("The email has been successfully sent!")
-            return {"message" : "The association has been successfully created!"}
-        else:
-            raise HTTPException(status_code = 409, detail = "Association already exists")
-    else:
+    if checkerica_email['exist'] == True and checkerica['exist'] == False:
+        CreateAssociation(item.email, item.username, item.secret).new_association()
+        check_association_id = CreateAssociation(item.email, item.username, item.secret).get_keycloak_user_id()
+        CreateAssociation(item.email, item.username, item.secret).assign_keycloak_roles()
+        CreateAssociation(item.email, item.username, item.secret).verify_email(check_association_id['user_id_keycloak'])
+        return {"message" : "The association has been successfully created!"}
+    elif checkerica_email['exist'] == False:
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
+    elif checkerica['exist'] == True:
+        raise HTTPException(status_code = 409, detail = "Association already exists")
+    else:
+        raise HTTPException(status_code = 500, detail = "Something went wrong")
 
 @app.post("/resend-email", tags = ["Ponovo posalji email verifikaciju"])
 async def resend_email(item : ItemForResend):
