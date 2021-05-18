@@ -6,7 +6,7 @@ from is_email import Is_email_valid
 class CreateAssociation():
     def __init__(self, email, username_association, secret):
         self.email = email
-        self.username_association = username_association
+        self.username = username_association
         self.secret = secret  
 
     def assign_keycloak_roles(self):
@@ -17,7 +17,7 @@ class CreateAssociation():
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')   
         client_id = keycloak_admin.get_client_id(os.getenv('KEYCLOAK_CLIENT_NAME'))
-        user_id = keycloak_admin.get_user_id(self.username_association)
+        user_id = keycloak_admin.get_user_id(self.username)
         role_id = keycloak_admin.get_client_role_id(client_id=client_id, role_name="association_role")
         keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'association_role'}])
 
@@ -28,7 +28,7 @@ class CreateAssociation():
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
-        username = self.username_association
+        username = self.username
         user_id_keycloak = keycloak_admin.get_user_id(username)
         if user_id_keycloak == None:
             return {"exist" : False}
@@ -66,7 +66,7 @@ class CreateAssociation():
             emails.append(x["email"])
             list_users.append(x["username"])
 
-        if self.email in emails or self.username_association in list_users:
+        if self.email in emails or self.username in list_users:
             return {"exist": True}
         else:
             return {"exist": False}
@@ -88,7 +88,7 @@ class CreateAssociation():
 
         if email_check['exist'] == True:
             keycloak_admin.create_user({"email": self.email,
-                        "username": self.username_association,
+                        "username": self.username,
                         "enabled": "True",
                         "credentials": [
                             {
