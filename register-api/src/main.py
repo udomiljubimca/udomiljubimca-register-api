@@ -2,7 +2,7 @@ import logging
 import requests
 import uvicorn
 from fastapi import FastAPI, HTTPException, status
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 from createuser import CreateUser
 from docs import register_api_docs
 from resend_email import Resend_verify_email
@@ -33,6 +33,11 @@ class ItemAssociation(BaseModel):
     phone_number : Optional[int] = None
     web : Optional[str] = None
     secret : str
+    @validator("username")
+    def name_must_contain_space(self, cls, v):
+        return v.lower()
+
+
 
 @app.get("/health", tags = ["Provera rada aplikacije"])
 async def index():
