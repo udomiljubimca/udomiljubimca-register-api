@@ -77,7 +77,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - **Postman**: <http://149.81.126.136/api/latest/register-api/register-association> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
              putem json-a {
             "email" : "exemple@gmail.com",
-            "username_association" : "exemple",
+            "username" : "exemple",
             "secret" : "exemple"
             }  >> vraca {"message" : "The association has been successfully created!"} i salje na email verifikaciju
 
@@ -88,7 +88,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
         -H 'Content-Type: application/json' \
         -d '{
         "email": "exemple@gmail.com",
-        "username_association": "exemple",
+        "username": "exemple",
         "secret": "exemple"
         }' >> vraca {"message" : "The association has been successfully created!"} i salje na email verifikaciju
 
