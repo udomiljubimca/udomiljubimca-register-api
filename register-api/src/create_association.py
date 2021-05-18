@@ -25,11 +25,11 @@ class CreateAssociation():
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KEYCLOAK_ADMIN_USER'),
                                 password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
-                                client_id = os.getenv('KEYCLOAK_CLIENT_NAME'),
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
-        user_id_keycloak = keycloak_admin.get_user_id(self.username_association)
+        username = self.username_association
+        user_id_keycloak = keycloak_admin.get_user_id(username)
         if user_id_keycloak == None:
             return {"exist" : False}
         else:
