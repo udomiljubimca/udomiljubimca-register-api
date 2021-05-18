@@ -33,11 +33,13 @@ class ItemAssociation(BaseModel):
     phone_number : Optional[int] = None
     web : Optional[str] = None
     secret : str
-    @validator("username")
-    def name_must_be_lowercase(cls, v):
-        return v.lower()
 
-
+@validator("email")
+def email_must_be_lowercase(cls, v):
+    return v.lower()
+@validator("username")
+def username_must_be_lowercase(cls, v):
+    return v.lower()
 
 @app.get("/health", tags = ["Provera rada aplikacije"])
 async def index():
