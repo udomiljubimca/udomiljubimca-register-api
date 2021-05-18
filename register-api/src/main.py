@@ -89,7 +89,6 @@ async def register_association(item : ItemAssociation):
 @app.post("/resend-email", tags = ["Ponovo posalji email verifikaciju"])
 async def resend_email(item : ItemForResend):
     check_user_id_for_resend = Resend_verify_email(item.username).resend(item.username)
-    print(check_user_id_for_resend)
     if check_user_id_for_resend['exist'] == False:
         raise HTTPException(status_code = 404, detail = "username does not exist")
     else:
