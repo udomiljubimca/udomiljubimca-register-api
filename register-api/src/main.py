@@ -28,10 +28,10 @@ class ItemForResend(BaseModel):
 class ItemAssociation(BaseModel):
     email : str
     username : str
-    # number_association : Optional[int] = None
-    # place : Optional[str] = None
-    # phone_number : Optional[int] = None
-    # web : Optional[str] = None
+    number_association : Optional[int] = None
+    place : Optional[str] = None
+    phone_number : Optional[int] = None
+    web : Optional[str] = None
     secret : str
 
 @app.get("/health", tags = ["Provera rada aplikacije"])
