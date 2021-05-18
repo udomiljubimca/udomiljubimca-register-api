@@ -9,8 +9,6 @@ from resend_email import Resend_verify_email
 from typing import Optional
 from create_association import CreateAssociation
 from is_email import Is_email_valid
-import time
-
 
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
@@ -67,13 +65,12 @@ async def register_association(item:Item_association):
     if checkerica_email['exist'] == True:
         if checkerica['exist'] == False:
             CreateAssociation(item.email, item.username, item.secret).new_association()
-            time.sleep(5)
-            check_user_id = CreateAssociation(item.email, item.username, item.secret).get_keycloak_user_id()
-            if check_user_id["exist"] == False:
+            check_association_id = CreateAssociation(item.email, item.username, item.secret).get_keycloak_user_id()
+            if check_association_id["exist"] == False:
                 print("Association cannot be found or does not exist.")
             else:
                 CreateAssociation(item.email, item.username, item.secret).assign_keycloak_roles()
-                CreateAssociation(item.email, item.username, item.secret).verify_email(check_user_id['user_id_keycloak'])
+                CreateAssociation(item.email, item.username, item.secret).verify_email(check_association_id['user_id_keycloak'])
                 print("The email has been successfully sent!")
             return {"message" : "The association has been successfully created!"}
         else:
