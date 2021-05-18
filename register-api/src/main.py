@@ -15,7 +15,7 @@ logger.setLevel("DEBUG")
 
 app = FastAPI(openapi_tags = register_api_docs, openapi_prefix = "/api/latest/register-api")
 
-class Item(BaseModel):
+class ItemUser(BaseModel):
     email : str
     username : str
     firstName : str
@@ -39,7 +39,7 @@ async def index():
     return {"HEALTH" : "OK"}
 
 @app.post("/register-user", tags = ["Registracija"])
-async def register_user(item : Item):
+async def register_user(item : ItemUser):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
     if checkerica_email['exist'] == True:
