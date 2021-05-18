@@ -19,10 +19,9 @@ class CreateUser():
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
         client_id = keycloak_admin.get_client_id(os.getenv('KEYCLOAK_CLIENT_NAME'))
-
         user_id = keycloak_admin.get_user_id(self.username)
         role_id = keycloak_admin.get_client_role_id(client_id=client_id, role_name="user_role")
-        add_role = keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'user_role'}])
+        keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'user_role'}])
         
     def get_keycloak_user_id(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
@@ -72,7 +71,6 @@ class CreateUser():
             return {"exist": True}
         else:
             return {"exist": False}
-
 
     def new_user(self):
         KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
