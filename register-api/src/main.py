@@ -8,6 +8,7 @@ from docs import register_api_docs
 from resend_email import Resend_verify_email
 from typing import Optional
 from create_association import CreateAssociation
+import os
 
 from is_email import Is_email_valid
 logger = logging.getLogger(__name__)
@@ -46,10 +47,10 @@ async def register_user(item:Item):
         if checkerica['exist'] == False:
             CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).new_user()
             check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
-            CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).assign_keycloak_roles()
             if check_user_id["exist"] == False:
                 print("user does not exist")
             else:
+                CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).assign_keycloak_roles()
                 CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).verify_email(check_user_id["user_id_keycloak"])
                 print("The email has been successfully sent!")
             return {"message" : "The user has been successfully created!"}
@@ -66,10 +67,10 @@ async def register_association(item:Item_association):
         if checkerica['exist'] == False:
             CreateAssociation(item.email, item.username_association, item.secret).new_association()
             check_user_id = CreateAssociation(item.email, item.username_association, item.secret).get_keycloak_user_id()
-            CreateAssociation(item.email, item.username_association, item.secret).assign_keycloak_roles()
             if check_user_id["exist"] == False:
-                print("association does not exist")
+                print("Association cannot be found or does not exist.")
             else:
+                CreateAssociation(item.email, item.username_association, item.secret).assign_keycloak_roles()
                 CreateAssociation(item.email, item.username_association, item.secret).verify_email(check_user_id['user_id_keycloak'])
                 print("The email has been successfully sent!")
             return {"message" : "The association has been successfully created!"}

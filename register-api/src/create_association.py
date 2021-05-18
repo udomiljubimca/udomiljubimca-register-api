@@ -32,7 +32,6 @@ class CreateAssociation():
         if user_id_keycloak == None:
             return {"exist" : False}
         else:
-            #keycloak_admin.send_verify_email(user_id=user_id_keycloak)
             return {"exist" : True, "user_id_keycloak" : user_id_keycloak}
 
     def verify_email(self, user_id_keycloak):
