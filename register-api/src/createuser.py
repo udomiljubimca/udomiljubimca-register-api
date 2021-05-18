@@ -87,7 +87,6 @@ class CreateUser():
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
         email_check = Is_email_valid(self.email).check()
         
-
         if email_check['exist'] == True:
             keycloak_admin.create_user({"email": self.email,
                         "username": self.username,
@@ -102,4 +101,4 @@ class CreateUser():
                         ]
                         })
         else:
-            return {"is_email" : False}
+            return {"exist" : False}
