@@ -66,9 +66,9 @@ class CreateAssociation():
             list_users.append(x["username"])
 
         if self.email in emails or self.username in list_users:
-            return {"exist": True}
+            return {"exist" : True}
         else:
-            return {"exist": False}
+            return {"exist" : False}
 
     def new_association(self):
         KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),

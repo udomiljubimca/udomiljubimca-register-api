@@ -5,7 +5,6 @@ import os
 
 class Resend_verify_email():
     def __init__(self, username):
-
         self.username = username
 
     def resend(self, username):
@@ -20,6 +19,7 @@ class Resend_verify_email():
             return {"exist" : False}
         else:
             return {"exist" : True, "user_id_keycloak" : user_id_keycloak}
+
     def send(self, user_id_keycloak):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KEYCLOAK_ADMIN_USER'),
