@@ -4,9 +4,9 @@ import os
 from is_email import Is_email_valid 
 
 class CreateAssociation():
-    def __init__(self, email, username_association, secret):
+    def __init__(self, email, username, secret):
         self.email = email
-        self.username = username_association
+        self.username = username
         self.secret = secret  
 
     def assign_keycloak_roles(self):
