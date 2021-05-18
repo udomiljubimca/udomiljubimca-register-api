@@ -25,7 +25,7 @@ class Item(BaseModel):
 class Item_for_resend(BaseModel):
     username : str
 
-class Item_association(BaseModel):
+class ItemAssociation(BaseModel):
     email : str
     username : str
     # number_association : Optional[int] = None
@@ -59,7 +59,7 @@ async def register_user(item:Item):
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
 
 @app.post("/register-association", tags = ["Registracija udruzenja"])
-async def register_association(item:Item_association):
+async def register_association(item:ItemAssociation):
     checkerica = CreateAssociation(item.email, item.username, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
     if checkerica_email['exist'] == True:

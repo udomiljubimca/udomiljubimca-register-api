@@ -28,7 +28,7 @@ class CreateAssociation():
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
-        user_id_keycloak = keycloak_admin.get_user_id("associacija")
+        user_id_keycloak = keycloak_admin.get_user_id(self.username)
         if user_id_keycloak == None:
             return {"exist" : False}
         else:
