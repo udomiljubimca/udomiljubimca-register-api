@@ -1,25 +1,25 @@
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
-from is_email import Is_email_valid 
+from is_email import Is_email_valid
 
 class CreateAssociation():
-    def __init__(self, email, username_association, secret):
+    def __init__(self, email, username, secret):
         self.email = email
-        self.username_association = username_association
-        self.secret = secret  
+        self.username = username
+        self.secret = secret
+
     def assign_keycloak_roles(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KEYCLOAK_ADMIN_USER'),
                                 password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
                                 realm_name = "master",
                                 verify = True)
-        keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')   
-        
+        keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
         client_id = keycloak_admin.get_client_id(os.getenv('KEYCLOAK_CLIENT_NAME'))
-        user_id = keycloak_admin.get_user_id(self.username_association)
+        user_id = keycloak_admin.get_user_id(self.username)
         role_id = keycloak_admin.get_client_role_id(client_id=client_id, role_name="association_role")
-        add_role = keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'association_role'}])
+        keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'association_role'}])
 
     def get_keycloak_user_id(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
@@ -28,12 +28,12 @@ class CreateAssociation():
                                 realm_name = "master",
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
-        user_id_keycloak = keycloak_admin.get_user_id(self.username_association)
+        user_id_keycloak = keycloak_admin.get_user_id(self.username)
         if user_id_keycloak == None:
             return {"exist" : False}
         else:
-            #keycloak_admin.send_verify_email(user_id=user_id_keycloak)
             return {"exist" : True, "user_id_keycloak" : user_id_keycloak}
+
     def verify_email(self, user_id_keycloak):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KEYCLOAK_ADMIN_USER'),
@@ -65,11 +65,10 @@ class CreateAssociation():
             emails.append(x["email"])
             list_users.append(x["username"])
 
-        if self.email in emails or self.username_association in list_users:
-            return {"exist": True}
+        if self.email in emails or self.username in list_users:
+            return {"exist" : True}
         else:
-            return {"exist": False}
-
+            return {"exist" : False}
 
     def new_association(self):
         KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
@@ -88,8 +87,10 @@ class CreateAssociation():
 
         if email_check['exist'] == True:
             keycloak_admin.create_user({"email": self.email,
-                        "username": self.username_association,
+                        "username": self.username,
                         "enabled": "True",
+                        "firstName": "Test",
+                        "lastName": "Test",
                         "credentials": [
                             {
                                 "value": self.secret,
@@ -98,4 +99,4 @@ class CreateAssociation():
                         ]
                         })
         else:
-            return{"exist" : False}
+            return {"exist" : False}

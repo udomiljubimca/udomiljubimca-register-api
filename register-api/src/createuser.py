@@ -19,11 +19,10 @@ class CreateUser():
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
         client_id = keycloak_admin.get_client_id(os.getenv('KEYCLOAK_CLIENT_NAME'))
-
         user_id = keycloak_admin.get_user_id(self.username)
         role_id = keycloak_admin.get_client_role_id(client_id=client_id, role_name="user_role")
-        add_role = keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'user_role'}])
-        
+        keycloak_admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'user_role'}])
+
     def get_keycloak_user_id(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KEYCLOAK_ADMIN_USER'),
@@ -35,8 +34,8 @@ class CreateUser():
         if user_id_keycloak == None:
             return {"exist" : False}
         else:
-            #keycloak_admin.send_verify_email(user_id=user_id_keycloak)
             return {"exist" : True, "user_id_keycloak" : user_id_keycloak}
+
     def verify_email(self, user_id_keycloak):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                 username = os.getenv('KEYCLOAK_ADMIN_USER'),
@@ -69,10 +68,9 @@ class CreateUser():
             list_users.append(x["username"])
 
         if self.email in emails or self.username in list_users:
-            return {"exist": True}
+            return {"exist" : True}
         else:
-            return {"exist": False}
-
+            return {"exist" : False}
 
     def new_user(self):
         KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
@@ -88,7 +86,6 @@ class CreateUser():
                                 verify = True)
         keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
         email_check = Is_email_valid(self.email).check()
-        
 
         if email_check['exist'] == True:
             keycloak_admin.create_user({"email": self.email,
@@ -104,4 +101,4 @@ class CreateUser():
                         ]
                         })
         else:
-            return {"is_email" : False}
+            return {"exist" : False}
