@@ -12,6 +12,14 @@ services:
       # args: 
       #   TEST: Test
     image: udomiljubimca/register-api:1.0
+    environment: 
+      FLASK_ENV: ${FLASK_ENV}
+      KEYCLOAK_ADMIN_USER: ${KEYCLOAK_ADMIN_USER}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      CLIENT_RELM_SECRET: ${CLIENT_RELM_SECRET}
+      CLIENT_RELM_NAME: ${CLIENT_RELM_NAME}
+      KEYCLOAK_URL: ${KEYCLOAK_URL}
+      KEYCLOAK_CLIENT_NAME: ${KEYCLOAK_CLIENT_NAME}
     ports:
     - 8081:8080
     networks:
