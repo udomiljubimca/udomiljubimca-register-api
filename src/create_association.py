@@ -3,11 +3,23 @@ from keycloak import KeycloakAdmin
 import os
 from is_email import Is_email_valid
 
-class CreateAssociation():
+class Admin_conn:
+    def __init__(self):
+        keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
+                                    username = os.getenv('KEYCLOAK_ADMIN_USER'),
+                                    password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
+                                    realm_name = "master",
+                                    verify = True)
+        keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
+        
+        return keycloak_admin
+
+class CreateAssociation(Admin_conn):
     def __init__(self, email, username, secret):
         self.email = email
         self.username = username
         self.secret = secret
+        self.admin = Admin_conn.__init__(self)
 
     def assign_keycloak_roles(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
@@ -77,16 +89,11 @@ class CreateAssociation():
                         client_secret_key = os.getenv('CLIENT_RELM_SECRET')
                         )
 
-        keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
-                                username = os.getenv('KEYCLOAK_ADMIN_USER'),
-                                password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
-                                realm_name = "master",
-                                verify = True)
-        keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
+        
         email_check = Is_email_valid(self.email).check()
 
         if email_check['exist'] == True:
-            keycloak_admin.create_user({"email": self.email,
+            self.admin.create_user({"email": self.email,
                         "username": self.username,
                         "enabled": "True",
                         "firstName": "Test",
