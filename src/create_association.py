@@ -10,8 +10,7 @@ class Admin_conn:
                                     password = os.getenv('KEYCLOAK_ADMIN_PASSWORD'),
                                     realm_name = "master",
                                     verify = True)
-        keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')
-        
+        keycloak_admin.realm_name = os.getenv('CLIENT_RELM_NAME')        
         return keycloak_admin
 
 class CreateAssociation(Admin_conn):
@@ -66,8 +65,7 @@ class CreateAssociation(Admin_conn):
                         realm_name = os.getenv('CLIENT_RELM_NAME'),
                         client_secret_key = os.getenv('CLIENT_RELM_SECRET')
                         )
-
-        
+      
         email_check = Is_email_valid(self.email).check()
 
         if email_check['exist'] == True:
