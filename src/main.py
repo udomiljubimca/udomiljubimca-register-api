@@ -9,7 +9,7 @@ from resend_email import Resend_verify_email
 from typing import Optional
 from create_association import CreateAssociation
 from is_email import Is_email_valid
-
+import json
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
@@ -62,6 +62,7 @@ async def register_user(item : ItemUser):
         check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
         CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).assign_keycloak_roles()
         CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).verify_email(check_user_id["user_id_keycloak"])
+        
         return {"message" : "The user has been successfully created!"}
     elif checkerica_email['exist'] == False:
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
