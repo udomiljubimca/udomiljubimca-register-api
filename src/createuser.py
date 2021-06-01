@@ -2,6 +2,7 @@ from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
 from is_email import Is_email_valid
+import requests
 
 class Admin_conn:
     def __init__(self):
@@ -81,3 +82,19 @@ class CreateUser(Admin_conn):
                         })
         else:
             return {"exist" : False}
+    
+class CreateUserUserService():
+    def __init__(self, email, username, firstName, lastName, about_me, city, age, terms_and_condition_accepted):
+        self.email = email
+        self.username = username
+        self.firstName = firstName
+        self.lastName = lastName
+        self.about_me = about_me
+        self.city = city
+        self.age = age
+        self.terms_and_condition_accepted = terms_and_condition_accepted
+
+    def create_user(self):
+        url = '{0}/insert-user'.format(os.getenv('USER_SERVICE_URL'))
+        data = {"email" : self.email,"name" : self.firstName,"surname" : self.lastName,"about_me" : self.about_me,"city" : self.city,"age" : self.age,"terms_and_condition_accepted" : self.terms_and_condition_accepted}
+        requests.post(url, json = data)
