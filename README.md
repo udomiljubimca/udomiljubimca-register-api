@@ -6,7 +6,7 @@ ___
 ## Lista koncepta
 
 * [Deskripcija](#Deskripcija)
-      * [Licence](#Licence)
+      * - [Licence](#Licence)
 3. [Upotreba](#Upotreba)
 4. [Register-api](#Register-api)
 5. [Kontakt](#Kontakt)
