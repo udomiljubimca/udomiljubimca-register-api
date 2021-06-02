@@ -4,11 +4,11 @@
 ___
 
 ### Lista koncepta
-- [Deskripcija](#Deskripcija)
-- [Licence](#Licence)
-- [Upotreba](#Upotreba)
- - [Register-api](#Register-api)
-- [Kontakt](#Kontakt)
+- 1.[Deskripcija](#Deskripcija)
+- 2.[Licence](#Licence)
+- 3.[Upotreba](#Upotreba)
+        - [Register-api](#Register-api)
+- 4.[Kontakt](#Kontakt)
 
 
  ___
