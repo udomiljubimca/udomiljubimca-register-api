@@ -64,7 +64,8 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
                         "secret" : "exemple"
                         }  >> vraca {"message": "The user has been successfully created!"} i salje na email verifikaciju
 
-- **Terminal**: curl -X 'POST' \
+- **Terminal**: / 
+        curl -X 'POST' \
         'http://149.81.126.136/api/latest/register-api/register-user' \
         -H 'accept: application/json' \
         -H 'Content-Type: application/json' \
