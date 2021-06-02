@@ -132,6 +132,6 @@ ___
 
 ## Kontakt
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/run-collections/aff5aba9dc9daff4ec0f)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/aff5aba9dc9daff4ec0f)
 ___
 
