@@ -7,11 +7,11 @@ ___
 - [Deskripcija](#Deskripcija)
 - [Licence](#Licence)
 - [Upotreba](#Upotreba)
- -[Register-api]
+ - [Register-api](#Register-api)
 - [Kontakt](#Kontakt)
 
 
- __
+ ___
 
 ## Deskripcija
 Ovo je upustvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
