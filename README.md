@@ -11,14 +11,9 @@ ___
 - [Deskripcija](#Deskripcija) 
 - [Licence](#Licence)
 - [Upotreba](#Upotreba)
-<li> 
-
-- [Register-api](#Register-api)    </li>
-
-     - [Health](#Health)
-     - [Register-user](#Register-user)  
-
-
+- [Register-api](#Register-api)    
+- [Health](#Health)
+- [Register-user](#Register-user)  
 - [Kontakt](#Kontakt)
 
 </ul>
