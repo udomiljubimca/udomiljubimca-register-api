@@ -5,9 +5,8 @@ ___
 
 
 <details open>
-<summary> 
 
-**Lista koncepta**bold </summary>
+**<summary> Lista koncepta </summary>**
 
 - [Deskripcija](#Deskripcija) 
 - [Licence](#Licence)
