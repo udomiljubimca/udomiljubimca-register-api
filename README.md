@@ -4,11 +4,11 @@
 ___
 
 ### Lista koncepta
-- 1.[Deskripcija](#Deskripcija)
-- 2.[Licence](#Licence)
-- 3.[Upotreba](#Upotreba)
-        - [Register-api](#Register-api)
-- 4.[Kontakt](#Kontakt)
+Markup : * - 1.[Deskripcija](#Deskripcija)
+         * - 2.[Licence](#Licence)
+         * - 3.[Upotreba](#Upotreba)
+                * - [Register-api](#Register-api)
+         * - 4.[Kontakt](#Kontakt)
 
 
  ___
