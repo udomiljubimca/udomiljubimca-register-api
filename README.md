@@ -9,6 +9,9 @@ ___
 2. [Licence](#Licence)
 3. [Upotreba](#Upotreba)
    * [Register-api](#Register-api)
+     * [Health](#Health)
+     * [Register-user](#Register-user)
+     
 5. [Kontakt](#Kontakt)
 
 
@@ -30,7 +33,7 @@ Ovo je upustvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes d
 - <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
-## health
+## Health
 
 - **Postman**:  <http://149.81.126.136/api/latest/register-api/health> >> metoda[GET] >> vraca {"HEALTH": "OK"}
 
@@ -41,7 +44,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 - **Response**: 200
 
-## register-user
+## Register-user
 
 - **Postman**: <http://149.81.126.136/api/latest/register-api/register-user> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
         putem json-a {
