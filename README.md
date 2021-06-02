@@ -5,14 +5,14 @@ ___
 
 ## Lista koncepta
 
-1. [Deskripcija](#Deskripcija)
-2. [Licence](#Licence)
-3. [Upotreba](#Upotreba)
+- [Deskripcija](#Deskripcija)
+- [Licence](#Licence)
+- [Upotreba](#Upotreba)
    * [Register-api](#Register-api)
      * [Health](#Health)
      * [Register-user](#Register-user)
      
-5. [Kontakt](#Kontakt)
+- [Kontakt](#Kontakt)
 
 
  ___
