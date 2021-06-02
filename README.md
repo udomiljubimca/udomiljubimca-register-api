@@ -42,7 +42,7 @@ ___
 - <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
-## Health
+### Health
 
 - **Postman**:  <http://149.81.126.136/api/latest/register-api/health> >> metoda[GET] >> vraca {"HEALTH": "OK"}
 
@@ -53,7 +53,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 - **Response**: 200
 
-## Register-user
+### Register-user
 
 - **Postman**: <http://149.81.126.136/api/latest/register-api/register-user> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
         putem json-a {
@@ -84,7 +84,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"})
 - Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
 
-## Resend-email
+### Resend-email
 
 - **Postman**: <http://149.81.126.136/api/latest/register-api/resend-email> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
              putem json-a {"username" : "exemple"}  >> vraca {"message": "The email has been successfully sent!"} i salje na email verifikaciju
@@ -105,7 +105,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"})
 - Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
 
-## Register-association
+### Register-association
 
 - **Postman**: <http://149.81.126.136/api/latest/register-api/register-association> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
              putem json-a {
