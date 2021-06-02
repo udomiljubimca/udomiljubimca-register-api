@@ -115,12 +115,11 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
             }  >> vraca {"message" : "The association has been successfully created!"} i salje na email verifikaciju
 
 - **Terminal**: 
-        \
+        
         curl -X 'POST' 
         'http://149.81.126.136/api/latest/register-api/register-association'
-
-        -H 'accept: application/json' \
-        -H 'Content-Type: application/json' \
+        -H 'accept: application/json' 
+        -H 'Content-Type: application/json' 
         -d '{
         "email": "exemple@gmail.com",
         "username": "exemple",
