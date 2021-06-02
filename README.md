@@ -7,7 +7,7 @@ ___
 <details open>
 <summary> 
 
-## Lista koncepta 
+##### Lista koncepta 
 </summary>
 
 - [Deskripcija](#Deskripcija) 
