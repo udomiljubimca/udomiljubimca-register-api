@@ -5,24 +5,21 @@ ___
 
 
 <details open>
-<summary> Lista koncepta </summary>
+<summary> 
+
+**Lista koncepta**bold </summary>
 
 - [Deskripcija](#Deskripcija) 
 - [Licence](#Licence)
 - [Upotreba](#Upotreba)
   - [Register-api](#Register-api)    
     - [Health](#Health)
-    - [Register-user](#Register-user)  
+    - [Register-user](#Register-user)
+    - [Register-association](#Register-association)
+    - [Resend-email](#Resend-email)
 - [Kontakt](#Kontakt)
 </details>
 
-<!-- - [Deskripcija](#Deskripcija)
-- [Licence](#Licence)
-- [Upotreba](#Upotreba)
-   * [Register-api](#Register-api)
-     * [Health](#Health)
-     * [Register-user](#Register-user)  
-- [Kontakt](#Kontakt) -->
  ___
 
 ## Deskripcija
@@ -83,7 +80,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"})
 - Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
 
-## resend-email
+## Resend-email
 
 - **Postman**: <http://149.81.126.136/api/latest/register-api/resend-email> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
              putem json-a {"username" : "exemple"}  >> vraca {"message": "The email has been successfully sent!"} i salje na email verifikaciju
@@ -104,7 +101,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"})
 - Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
 
-## register-association
+## Register-association
 
 - **Postman**: <http://149.81.126.136/api/latest/register-api/register-association> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
              putem json-a {
