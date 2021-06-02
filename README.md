@@ -29,13 +29,13 @@ ___
 </ul>
 </details>
 
-- [Deskripcija](#Deskripcija)
+<!-- - [Deskripcija](#Deskripcija)
 - [Licence](#Licence)
 - [Upotreba](#Upotreba)
    * [Register-api](#Register-api)
      * [Health](#Health)
      * [Register-user](#Register-user)  
-- [Kontakt](#Kontakt)
+- [Kontakt](#Kontakt) -->
  ___
 
 ## Deskripcija
