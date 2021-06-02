@@ -5,11 +5,22 @@ ___
 
 ### Lista koncepta
 - [Deskripcija](#Deskripcija)
+- [Licence](#Licence)
+- [Upotreba](#Upotreba)
+- [Kontakt](#Kontakt)
 
-___
+
+ __
+
 ## Deskripcija
 Ovo je upustvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
-  
+## Licence
+
+## Upotreba
+
+## Kontakt
+
+
 ![images/image_for_md.png](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/fix/README.md/images/image_for_md.png)
 
 - Pre testiranja potrebno je da se ugradi addon sa ovog linka <https://addons.mozilla.org/en-US/firefox/addon/modify-header-value/> i da se podesi kao na slici iznad(secret-key nije javno dostupan).
