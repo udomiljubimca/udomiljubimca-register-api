@@ -7,21 +7,20 @@ ___
 <details open>
 <summary>Want to ruin the surprise?</summary>
 <ul>
-<li>
 
 - [Deskripcija](#Deskripcija) 
 - [Licence](#Licence)
 - [Upotreba](#Upotreba)
+<li> 
 
+- [Register-api](#Register-api)    </li>
 
-   * [Register-api](#Register-api)
-
-     * [Health](#Health)
-     * [Register-user](#Register-user)  
+     - [Health](#Health)
+     - [Register-user](#Register-user)  
 
 
 - [Kontakt](#Kontakt)
-</li>
+
 </ul>
 
 
