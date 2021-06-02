@@ -4,12 +4,9 @@
 ___
 
 ## Lista koncepta
-Markup : * Bullet list
-              * Nested bullet
-                  * Sub-nested bullet etc
-          * Bullet list item 2
-1. [Deskripcija](#Deskripcija)
-2. [Licence](#Licence)
+
+* [Deskripcija](#Deskripcija)
+ * [Licence](#Licence)
 3. [Upotreba](#Upotreba)
 4. [Register-api](#Register-api)
 5. [Kontakt](#Kontakt)
