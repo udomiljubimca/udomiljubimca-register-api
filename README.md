@@ -7,6 +7,7 @@ ___
 - [Deskripcija](#Deskripcija)
 - [Licence](#Licence)
 - [Upotreba](#Upotreba)
+ -[Register-api]
 - [Kontakt](#Kontakt)
 
 
