@@ -28,7 +28,7 @@ ___
 
 ## Licence
 - Apache License
-[Procitaj vise o licencama](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/develop/LICENSE)
+- ##### [Procitaj vise o licencama](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/develop/LICENSE)
 ___
 
 ## Podesavanja
