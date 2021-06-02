@@ -4,17 +4,38 @@
 ___
 
 ## Lista koncepta
+<details open>
+<summary>Want to ruin the surprise?</summary>
+<ul>
+<li>
+
+- [Deskripcija](#Deskripcija) 
+- [Licence](#Licence)
+- [Upotreba](#Upotreba)
+<ul>
+<li>
+
+   * [Register-api](#Register-api)
+
+     * [Health](#Health)
+     * [Register-user](#Register-user)  
+
+</li>
+</ul>
+
+- [Kontakt](#Kontakt)
+
+</li>
+</ul>
+</details>
 
 - [Deskripcija](#Deskripcija)
 - [Licence](#Licence)
 - [Upotreba](#Upotreba)
    * [Register-api](#Register-api)
      * [Health](#Health)
-     * [Register-user](#Register-user)
-     
+     * [Register-user](#Register-user)  
 - [Kontakt](#Kontakt)
-
-
  ___
 
 ## Deskripcija
