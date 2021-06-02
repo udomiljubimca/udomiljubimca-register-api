@@ -27,7 +27,7 @@ Ovo je upustvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes d
 ___
 
 ## Licence
-- Apache License
+- Apache License 
 - ##### [Procitaj vise o licencama](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/develop/LICENSE)
 ___
 
@@ -38,11 +38,6 @@ ___
 
 ___
 ## Upotreba
-
-## Kontakt
-
-
-
 
 - <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
@@ -137,3 +132,10 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 - Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "association already exists"})
 - Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
+
+___
+
+## Kontakt
+
+___
+
