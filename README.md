@@ -3,10 +3,12 @@
 > Kratak uvod u projekat
 ___
 
-## Lista koncepta
+
 <details open>
-<summary>Want to ruin the surprise?</summary>
-<ul>
+<summary> 
+
+## Lista koncepta 
+</summary>
 
 - [Deskripcija](#Deskripcija) 
 - [Licence](#Licence)
@@ -15,12 +17,6 @@ ___
     - [Health](#Health)
     - [Register-user](#Register-user)  
 - [Kontakt](#Kontakt)
-
-</ul>
-
-
-
-
 </details>
 
 <!-- - [Deskripcija](#Deskripcija)
