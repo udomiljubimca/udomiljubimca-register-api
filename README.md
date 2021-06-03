@@ -1,4 +1,4 @@
-[![Issues][issues]]
+[![Issues]]
 
 ___
 # Register-API
