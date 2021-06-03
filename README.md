@@ -30,7 +30,7 @@ ___
 
 
 ## Postman
-> Kloniraj postman kolekciju.
+- Kloniraj postman kolekciju.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/aff5aba9dc9daff4ec0f)
 
@@ -45,8 +45,7 @@ ___
 
 ## Upotreba
 
-- <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
-takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
+- <http://149.81.126.136/api/latest/register-api/docs#/> (Pristup Swagger dokumentaciji.).
 
 
 ### Health
@@ -56,7 +55,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
         curl -X 'GET' 'http://149.81.126.136/api/latest/register-api/health' -H 'accept: application/json'  
         return {"HEALTH": "OK"}
 
-- **Response**: 200
+> **Response**: 200
 
 
 ### Register-user
@@ -66,7 +65,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
         curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/register-user' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"email" : "exemple@gmail.com","username" : "exemple","firstName" : "exemple","lastName" : "exemple","secret" : "exemple"}'  
         return {"message": "The user has been successfully created!"} salje na email verifikaciju.
         
-- **Response**: 200
+> **Response**: 200
 
 - Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"})
 
@@ -98,5 +97,5 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 ## Kontakt
 
 
-# ___
+___
 
