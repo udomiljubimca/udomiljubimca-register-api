@@ -1,4 +1,3 @@
-[![Issues][issues-shield]][issues-url]
 ___
 # Register-API
 
@@ -96,7 +95,4 @@ ___
 
 
 ## Kontakt
-
-
 ___
-
