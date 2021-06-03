@@ -90,10 +90,8 @@ ___
         return {"message" : "The association has been successfully created!"}
 
 > **Response**: 200
-'''diff
-- zsd
-'''
-> **HTTPexception**:{"detail": "association already exists"}) Username/email treba da budu jedinstveni (409-Conflict!
+
+> **HTTPexception**:{"detail": "association already exists"},409) Username/email treba da budu jedinstveni!
 
 
 ## Kontakt
