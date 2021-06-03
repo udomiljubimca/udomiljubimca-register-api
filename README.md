@@ -91,7 +91,7 @@ ___
 
 > **Response**: 200
 
-- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response **(409-Conflict {"detail": "association already exists"})**
+>  **HTTPexception**:*** {"detail": "association already exists"}) *** Username/email treba da budu jedinstveni (409-Conflict!
 
 
 ## Kontakt
