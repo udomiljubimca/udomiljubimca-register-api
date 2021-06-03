@@ -11,6 +11,7 @@ ___
 - [Deskripcija](#Deskripcija) 
 - [Licence](#Licence)
 - [Podesavanja](#Podesavanja)
+- [Postman](#Postman)
 - [Upotreba](#Upotreba)
   - [Register-api endpoints](#Register-api)    
     - [Health](#Health)
@@ -18,7 +19,6 @@ ___
     - [Register-association](#Register-association)
     - [Resend-email](#Resend-email)
 - [Kontakt](#Kontakt)
-- [Postman](#Postman)
 </details>
 
 ___
@@ -75,13 +75,10 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 ### Resend-email
 
-- **Terminal**:curl -X 'POST' \
-        'http://149.81.126.136/api/latest/register-api/resend-email' \
-        -H 'accept: application/json' \
-        -H 'Content-Type: application/json' \
-        -d '{
-        "username": "exemple"
-        }' >> vraca {"message": "The email has been successfully sent!"} i salje na email verifikaciju
+- **Terminal**:
+
+        curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/resend-email' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"username": "exemple"}'
+        return {"message": "The email has been successfully sent!"} 
 
 - **Response**: 200
 
@@ -92,7 +89,7 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - **Terminal**: 
         
         curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/register-association' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"email": "exemple@gmail.com","username": "exemple","secret": "exemple"}'
-        Vraca {"message" : "The association has been successfully created!"} i salje na email verifikaciju.
+        return {"message" : "The association has been successfully created!"}
 
 - **Response**: 200
 
