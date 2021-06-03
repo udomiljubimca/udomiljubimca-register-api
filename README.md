@@ -91,7 +91,7 @@ ___
 
 > **Response**: 200
 
->  **HTTPexception**:*** {"detail": "association already exists"}) *** Username/email treba da budu jedinstveni (409-Conflict!
+>  **HTTPexception**:***{"detail": "association already exists"})*** Username/email treba da budu jedinstveni (409-Conflict!
 
 
 ## Kontakt
