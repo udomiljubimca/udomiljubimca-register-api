@@ -1,8 +1,5 @@
-# Register-API upotreba
-
-> Kratak uvod u projekat
+# Register-API
 ___
-
 
 <details open>
 
@@ -31,11 +28,13 @@ ___
 - Apache License 
 - ##### [Procitaj vise o licencama](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/develop/LICENSE)
 ___
+
 ## Postman
 > Kloniraj postman kolekciju.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/aff5aba9dc9daff4ec0f)
 ___
+
 ## Podesavanja
 ![images/image_for_md.png](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/fix/README.md/images/image_for_md.png)
 
@@ -44,34 +43,37 @@ ___
 > Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila.
 
 ___
+
 ## Upotreba
 
 - <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
+___
+
 ### Health
 
-- **Terminal**: curl -X 'GET' 'http://149.81.126.136/api/latest/register-api/health' -H 'accept: application/json' >> vraca {"HEALTH": "OK"}
+- **Terminal**: 
+
+        curl -X 'GET' 'http://149.81.126.136/api/latest/register-api/health' -H 'accept: application/json'  
+        return {"HEALTH": "OK"}
 
 - **Response**: 200
 
+___
+
 ### Register-user
 
-- **Terminal**: curl -X 'POST' \
-        'http://149.81.126.136/api/latest/register-api/register-user' \
-        -H 'accept: application/json' \
-        -H 'Content-Type: application/json' \
-        -d '{
-        "email" : "exemple@gmail.com",
-            "username" : "exemple",
-            "firstName" : "exemple",
-            "lastName" : "exemple",
-            "secret" : "exemple"
-        }'  >> vraca {"message": "The user has been successfully created!"} i salje na email verifikaciju
+- **Terminal**: 
+
+        curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/register-user' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"email" : "exemple@gmail.com","username" : "exemple","firstName" : "exemple","lastName" : "exemple","secret" : "exemple"}'  
+        return {"message": "The user has been successfully created!"} salje na email verifikaciju.
         
 - **Response**: 200
 
 - Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"})
+
+___
 
 ### Resend-email
 
@@ -83,6 +85,8 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - **Response**: 200
 
 - Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"})
+
+___
 
 ### Register-association
 
