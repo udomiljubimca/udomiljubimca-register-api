@@ -77,7 +77,7 @@ ___
         curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/resend-email' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"username": "exemple"}'
         return {"message": "The email has been successfully sent!"} 
 
-- **Response**: 200
+> **Response**: 200
 
 - Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"})
 
@@ -89,9 +89,9 @@ ___
         curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/register-association' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"email": "exemple@gmail.com","username": "exemple","secret": "exemple"}'
         return {"message" : "The association has been successfully created!"}
 
-- **Response**: 200
+> **Response**: 200
 
-- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "association already exists"})
+- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response **(409-Conflict {"detail": "association already exists"})**
 
 
 ## Kontakt
