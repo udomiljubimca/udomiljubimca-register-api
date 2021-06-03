@@ -18,6 +18,7 @@ ___
     - [Register-association](#Register-association)
     - [Resend-email](#Resend-email)
 - [Kontakt](#Kontakt)
+- [Postman](#Postman)
 </details>
 
 ___
@@ -30,11 +31,18 @@ ___
 - Apache License 
 - ##### [Procitaj vise o licencama](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/develop/LICENSE)
 ___
-
+## Postman
+> Kloniraj postman kolekciju.
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/aff5aba9dc9daff4ec0f)
+___
 ## Podesavanja
-![images/image_for_md.png](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/fix/README.md/images/image_for_md.png)
+> ![images/image_for_md.png](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/fix/README.md/images/image_for_md.png)
 
-- Pre testiranja potrebno je da se ugradi addon sa ovog linka <https://addons.mozilla.org/en-US/firefox/addon/modify-header-value/> i da se podesi kao na slici iznad(secret-key nije javno dostupan).
+> Pre testiranja potrebno je da se ugradi addon sa ovog linka <https://addons.mozilla.org/en-US/firefox/addon/modify-header-value/> i da se podesi kao na slici iznad(secret-key nije javno dostupan).
+
+> Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "association already exists"})
+> Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
+
 
 ___
 ## Upotreba
@@ -44,8 +52,6 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 ### Health
 
-- **Postman**:  <http://149.81.126.136/api/latest/register-api/health> >> metoda[GET] >> vraca {"HEALTH": "OK"}
-
 - **Terminal**: curl -X 'GET' 'http://149.81.126.136/api/latest/register-api/health' -H 'accept: application/json' >> vraca {"HEALTH": "OK"}
 
 - **Beleksa**: Ako koristits <http://149.81.126.136/api/latest/register-api/health> >> stisni na endpoint health[GET] >> try it out >> execute >>
@@ -54,15 +60,6 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - **Response**: 200
 
 ### Register-user
-
-- **Postman**: <http://149.81.126.136/api/latest/register-api/register-user> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
-        putem json-a {
-                        "email" : "exemple@gmail.com",
-                        "username" : "exemple",
-                        "firstName" : "exemple",
-                        "lastName" : "exemple",
-                        "secret" : "exemple"
-                        }  >> vraca {"message": "The user has been successfully created!"} i salje na email verifikaciju
 
 - **Terminal**: curl -X 'POST' \
         'http://149.81.126.136/api/latest/register-api/register-user' \
@@ -86,9 +83,6 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
 ### Resend-email
 
-- **Postman**: <http://149.81.126.136/api/latest/register-api/resend-email> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
-             putem json-a {"username" : "exemple"}  >> vraca {"message": "The email has been successfully sent!"} i salje na email verifikaciju
-
 - **Terminal**:curl -X 'POST' \
         'http://149.81.126.136/api/latest/register-api/resend-email' \
         -H 'accept: application/json' \
@@ -106,13 +100,6 @@ takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 - Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
 
 ### Register-association
-
-- **Postman**: <http://149.81.126.136/api/latest/register-api/register-association> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
-             putem json-a {
-            "email" : "exemple@gmail.com",
-            "username" : "exemple",
-            "secret" : "exemple"
-            }  >> vraca {"message" : "The association has been successfully created!"} i salje na email verifikaciju
 
 - **Terminal**: 
         
@@ -132,6 +119,6 @@ ___
 
 ## Kontakt
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/aff5aba9dc9daff4ec0f)
+
 ___
 
