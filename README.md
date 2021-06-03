@@ -1,5 +1,4 @@
-[![Issues]]
-
+[![Issues][issues-shield]][issues-url]
 ___
 # Register-API
 
@@ -101,4 +100,4 @@ ___
 
 ___
 
-[issues]: https://img.shields.io/github/issues/udomiljubimca/udomiljubimca-register-api/issues.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/udomiljubimca/udomiljubimca-register-api/issues.svg?style=for-the-badge
