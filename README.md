@@ -1,5 +1,5 @@
-# Register-API
 ___
+# Register-API
 
 <details open>
 
@@ -22,18 +22,18 @@ ___
 
 ## Deskripcija
 ##### Ovo je upustvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
-___
+
 
 ## Licence
 - Apache License 
 - ##### [Procitaj vise o licencama](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/develop/LICENSE)
-___
+
 
 ## Postman
 > Kloniraj postman kolekciju.
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/aff5aba9dc9daff4ec0f)
-___
+
 
 ## Podesavanja
 ![images/image_for_md.png](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/fix/README.md/images/image_for_md.png)
@@ -42,14 +42,12 @@ ___
 
 > Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila.
 
-___
 
 ## Upotreba
 
 - <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
 takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
 
-___
 
 ### Health
 
@@ -60,7 +58,6 @@ ___
 
 - **Response**: 200
 
-___
 
 ### Register-user
 
@@ -73,7 +70,6 @@ ___
 
 - Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"})
 
-___
 
 ### Resend-email
 
@@ -86,7 +82,6 @@ ___
 
 - Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"})
 
-___
 
 ### Register-association
 
@@ -98,7 +93,7 @@ ___
 - **Response**: 200
 
 - Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "association already exists"})
-___
+
 
 ## Kontakt
 
