@@ -1,3 +1,6 @@
+[![Issues][issues]][issues-url]
+
+[issues]: https://img.shields.io/github/issues/udomiljubimca/udomiljubimca-register-api/issues.svg?style=for-the-badge
 ___
 # Register-API
 
