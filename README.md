@@ -45,7 +45,7 @@ ___
 
 ## Upotreba
 
-- <http://149.81.126.136/api/latest/register-api/docs#/> (Pristup Swagger dokumentaciji.).
+- <http://149.81.126.136/api/latest/register-api/docs#/> (Pristupi Swagger dokumentaciji.).
 
 
 ### Health
@@ -67,8 +67,7 @@ ___
         
 > **Response**: 200
 
-- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"})
-
+> **HTTPexception**: ({"detail": "User already exists"},409) Username/email treba da budu jedinstveni!
 
 ### Resend-email
 
@@ -79,7 +78,7 @@ ___
 
 > **Response**: 200
 
-- Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"})
+> **HTTPexception**: ({"detail": "username does not exist"},404)
 
 
 ### Register-association
@@ -91,7 +90,7 @@ ___
 
 > **Response**: 200
 
-> **HTTPexception**:{"detail": "association already exists"},409) Username/email treba da budu jedinstveni!
+> **HTTPexception**:({"detail": "association already exists"},409) Username/email treba da budu jedinstveni!
 
 
 ## Kontakt
