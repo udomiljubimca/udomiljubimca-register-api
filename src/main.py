@@ -3,13 +3,13 @@ import requests
 import uvicorn
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel, validator
-from createuser import CreateUser
+from createuser import CreateUser, CreateUserUserService
 from docs import register_api_docs
 from resend_email import Resend_verify_email
 from typing import Optional
 from create_association import CreateAssociation
 from is_email import Is_email_valid
-
+import json
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
@@ -21,6 +21,10 @@ class ItemUser(BaseModel):
     firstName : str
     lastName : str
     secret: str
+    about_me: Optional[str] = None
+    city: Optional[str] = None
+    age: Optional[int] = None
+    terms_and_condition_accepted : bool
     @validator("email")
     def email_must_be_lowercase(cls, v):
         return v.lower()
@@ -62,6 +66,7 @@ async def register_user(item : ItemUser):
         check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
         CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).assign_keycloak_roles()
         CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).verify_email(check_user_id["user_id_keycloak"])
+        CreateUserUserService(item.email, item.username, item.firstName, item.lastName, item.about_me, item.city, item.age, item.terms_and_condition_accepted).create_user()
         return {"message" : "The user has been successfully created!"}
     elif checkerica_email['exist'] == False:
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
