@@ -1,101 +1,97 @@
-# Register-API upotreba
+___
+# Register-API
 
-- Ovo je upustvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
-  
+<details open>
+
+**<summary> Lista koncepta </summary>**
+
+- [Deskripcija](#Deskripcija) 
+- [Licence](#Licence)
+- [Podesavanja](#Podesavanja)
+- [Postman](#Postman)
+- [Upotreba](#Upotreba)
+  - [Register-api endpoints](#Register-api)    
+    - [Health](#Health)
+    - [Register-user](#Register-user)
+    - [Register-association](#Register-association)
+    - [Resend-email](#Resend-email)
+- [Kontakt](#Kontakt)
+</details>
+
+___
+
+## Deskripcija
+##### Ovo je upustvo koje opisuje rad sa endpointima i postoje tri nacina kako mozes da ih testiras, podesis i sta ce da vrate kao rezultat.
+
+
+## Licence
+- Apache License 
+- ##### [Procitaj vise o licencama](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/develop/LICENSE)
+
+
+## Postman
+- Kloniraj postman kolekciju.
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/aff5aba9dc9daff4ec0f)
+
+
+## Podesavanja
 ![images/image_for_md.png](https://github.com/udomiljubimca/udomiljubimca-register-api/blob/fix/README.md/images/image_for_md.png)
 
-- Pre testiranja potrebno je da se ugradi addon sa ovog linka <https://addons.mozilla.org/en-US/firefox/addon/modify-header-value/> i da se podesi kao na slici iznad(secret-key nije javno dostupan).
+> Pre testiranja potrebno je da se ugradi addon sa ovog linka <https://addons.mozilla.org/en-US/firefox/addon/modify-header-value/> i da se podesi kao na slici iznad(secret-key nije javno dostupan).
 
-- <http://149.81.126.136/api/latest/register-api/docs#/> (Ovaj link nas vodi u main fail gde se nalaze pozvane klase sa njihovim funkcionalnostima,
-takodje moze da se i testira njihov rad i procita dokumentacija endpointa).
+> Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila.
 
-## health
 
-- **Postman**:  <http://149.81.126.136/api/latest/register-api/health> >> metoda[GET] >> vraca {"HEALTH": "OK"}
+## Upotreba
 
-- **Terminal**: curl -X 'GET' 'http://149.81.126.136/api/latest/register-api/health' -H 'accept: application/json' >> vraca {"HEALTH": "OK"}
+- <http://149.81.126.136/api/latest/register-api/docs#/> (Pristupi Swagger dokumentaciji.).
 
-- **Beleksa**: Ako koristits <http://149.81.126.136/api/latest/register-api/health> >> stisni na endpoint health[GET] >> try it out >> execute >>
-                vraca {"HEALTH": "OK"}
 
-- **Response**: 200
+### Health
 
-## register-user
+- **Terminal**: 
 
-- **Postman**: <http://149.81.126.136/api/latest/register-api/register-user> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
-        putem json-a {
-                        "email" : "exemple@gmail.com",
-                        "username" : "exemple",
-                        "firstName" : "exemple",
-                        "lastName" : "exemple",
-                        "secret" : "exemple"
-                        }  >> vraca {"message": "The user has been successfully created!"} i salje na email verifikaciju
+        curl -X 'GET' 'http://149.81.126.136/api/latest/register-api/health' -H 'accept: application/json'  
+        return {"HEALTH": "OK"}
 
-- **Terminal**: curl -X 'POST' \
-        'http://149.81.126.136/api/latest/register-api/register-user' \
-        -H 'accept: application/json' \
-        -H 'Content-Type: application/json' \
-        -d '{
-        "email" : "exemple@gmail.com",
-            "username" : "exemple",
-            "firstName" : "exemple",
-            "lastName" : "exemple",
-            "secret" : "exemple"
-        }'  >> vraca {"message": "The user has been successfully created!"} i salje na email verifikaciju
+> **Response**: 200
+
+
+### Register-user
+
+- **Terminal**: 
+
+        curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/register-user' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"email" : "exemple@gmail.com","username" : "exemple","firstName" : "exemple","lastName" : "exemple","secret" : "exemple"}'  
+        return {"message": "The user has been successfully created!"} salje na email verifikaciju.
         
-- **Beleksa**: Ako koristits <http://149.81.126.136/api/latest/register-api/docs#/> stisni na endpoint register-user[POST] >> try it out >> popunis json >> execute >> vraca /
-            {"message": "The user has been successfully created!"} i salje na email verifikaciju
+> **Response**: 200
 
-- **Response**: 200
+> **HTTPexception**: ({"detail": "User already exists"},409) Username/email treba da budu jedinstveni!
 
-- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "User already exists"})
-- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
+### Resend-email
 
-## resend-email
+- **Terminal**:
 
-- **Postman**: <http://149.81.126.136/api/latest/register-api/resend-email> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
-             putem json-a {"username" : "exemple"}  >> vraca {"message": "The email has been successfully sent!"} i salje na email verifikaciju
+        curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/resend-email' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"username": "exemple"}'
+        return {"message": "The email has been successfully sent!"} 
 
-- **Terminal**:curl -X 'POST' \
-        'http://149.81.126.136/api/latest/register-api/resend-email' \
-        -H 'accept: application/json' \
-        -H 'Content-Type: application/json' \
-        -d '{
-        "username": "exemple"
-        }' >> vraca {"message": "The email has been successfully sent!"} i salje na email verifikaciju
+> **Response**: 200
 
-- **Beleksa**: Ako koristits <http://149.81.126.136/api/latest/register-api/docs#/> stisni na endpoint resend-email[POST] >> try it out >> popunis json >> execute >> vraca /
-            {"message": "The email has been successfully sent!"} i salje na email verifikaciju
+> **HTTPexception**: ({"detail": "username does not exist"},404)
 
-- **Response**: 200
 
-- Ako se unese username koji nije postojeci vraca(404-Not found {"detail": "username does not exist"})
-- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
+### Register-association
 
-## register-association
+- **Terminal**: 
+        
+        curl -X 'POST' 'http://149.81.126.136/api/latest/register-api/register-association' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"email": "exemple@gmail.com","username": "exemple","secret": "exemple"}'
+        return {"message" : "The association has been successfully created!"}
 
-- **Postman**: <http://149.81.126.136/api/latest/register-api/register-association> >> metoda[POST] >> (body > raw > json) >> u body se upisuje /
-             putem json-a {
-            "email" : "exemple@gmail.com",
-            "username" : "exemple",
-            "secret" : "exemple"
-            }  >> vraca {"message" : "The association has been successfully created!"} i salje na email verifikaciju
+> **Response**: 200
 
-- **Terminal**: curl -X 'POST' \
-        'http://149.81.126.136/api/latest/register-api/register-association' \
+> **HTTPexception**:({"detail": "association already exists"},409) Username/email treba da budu jedinstveni!
 
-        -H 'accept: application/json' \
-        -H 'Content-Type: application/json' \
-        -d '{
-        "email": "exemple@gmail.com",
-        "username": "exemple",
-        "secret": "exemple"
-        }' >> vraca {"message" : "The association has been successfully created!"} i salje na email verifikaciju
 
-- **Beleksa**: Ako koristits <http://149.81.126.136/api/latest/register-api/docs#/> stisni na endpoint register-user[POST] >> try it out >> popunis json >> execute >> vraca /
-            {"message": "The association has been successfully created!"} i salje na email verifikaciju
-
-- **Response**: 200
-
-- Ako se dva puta unesu isti username ili email i pokusa kreirati user vraca response (409-Conflict {"detail": "association already exists"})
-- Ako imas Avast(ili neki drugi antivirus) iskljuci ga zato sto moze da blokira slanje emaila
+## Kontakt
+___
