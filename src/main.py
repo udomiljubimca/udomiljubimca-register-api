@@ -10,6 +10,7 @@ from typing import Optional
 from create_association import CreateAssociation
 from is_email import Is_email_valid
 import json
+from limits import LimitPassword, LimitUsername
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
@@ -61,7 +62,9 @@ async def index():
 async def register_user(item : ItemUser):
     checkerica = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
-    if checkerica_email['exist'] == True and checkerica['exist'] == False:
+    checkerica_password = LimitPassword(item.secret).is_password_valid()
+    checkerica_username = LimitUsername(item.username).is_username_valid()
+    if checkerica_email['exist'] == True and checkerica['exist'] == False and checkerica_password['status'] == True and checkerica_username['status'] == True:
         CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).new_user()
         check_user_id = CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).get_keycloak_user_id()
         CreateUser(item.email, item.username, item.firstName, item.lastName, item.secret).assign_keycloak_roles()
@@ -72,6 +75,10 @@ async def register_user(item : ItemUser):
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
     elif checkerica['exist'] == True:
         raise HTTPException(status_code = 409, detail = "Username or email already exists")
+    elif checkerica_password['status'] == False:
+        raise HTTPException(status_code = 406, detail = "Password is not acceptable")
+    elif checkerica_username['status'] == False:
+        raise HTTPException(status_code = 406, detail = "Username is not acceptable")
     else:
         raise HTTPException(status_code = 500, detail = "Something went wrong")
 
@@ -79,7 +86,7 @@ async def register_user(item : ItemUser):
 async def register_association(item : ItemAssociation):
     checkerica = CreateAssociation(item.email, item.username, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
-    if checkerica_email['exist'] == True and checkerica['exist'] == False:
+    if checkerica_email['exist'] == True and checkerica['exist'] == False and checkerica_password['status'] == True and checkerica_username['status'] == True:
         CreateAssociation(item.email, item.username, item.secret).new_association()
         check_association_id = CreateAssociation(item.email, item.username, item.secret).get_keycloak_user_id()
         CreateAssociation(item.email, item.username, item.secret).assign_keycloak_roles()
@@ -89,6 +96,10 @@ async def register_association(item : ItemAssociation):
         raise HTTPException(status_code = 406, detail = "Email is not acceptable")
     elif checkerica['exist'] == True:
         raise HTTPException(status_code = 409, detail = "Association already exists")
+    elif checkerica_password['status'] == False:
+        raise HTTPException(status_code = 406, detail = "Password is not acceptable")
+    elif checkerica_username['status'] == False:
+        raise HTTPException(status_code = 406, detail = "Username is not acceptable")
     else:
         raise HTTPException(status_code = 500, detail = "Something went wrong")
 
