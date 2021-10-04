@@ -95,7 +95,17 @@ class CreateUser(Admin_conn):
         role_id = self.admin.get_client_role_id(client_id=client_id, role_name="user_role")
         self.admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'user_role'}])
 
-    def get_keycloak_user_id(self):
+    def get_keycloak_user_id(self) -> bool:
+        """
+        Uzmi Keycloak user id.
+
+        Parametri:
+        ---------------
+
+            user_id_keycloak -> username : None -> bool(False) - ako nema username
+
+            user_id_keycloak -> username : bool(True), user_id - ima username
+        """
         user_id_keycloak = self.admin.get_user_id(self.username)
         if user_id_keycloak == None:
             return {"exist" : False}
