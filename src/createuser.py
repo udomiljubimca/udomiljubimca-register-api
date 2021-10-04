@@ -1,3 +1,8 @@
+""" Klase koje se upotrebljavaju za registrovanje korisnika.
+
+Admin_conn omogucava konektovanje ka Keycloak API.
+CreateUser kreiranje korisnika
+"""
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
