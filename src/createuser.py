@@ -6,9 +6,10 @@ CreateUser kreiranje korisnika
 
 __all__ = ["CreateUser", "CreateUserUserService"]   # limitiranje sta ce moci da se pozove kao import "javne" klase
 __version__ = "1.6"  # verzija modula
-__author__ = "Milos Zlatkovic"  # autor modula
+__author__ = "Milos Zlatkovic"  # autor modula/klase
 
 #block import
+from typing import Dict, Tuple
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
@@ -16,6 +17,11 @@ from is_email import Is_email_valid
 import requests
 
 class Admin_conn:
+    """
+    Klasa koja konektuje na Keycloak admin panel.
+
+    Argumente vuce iz Docker variabli za konekciju.
+    """
     def __init__(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                     username = os.getenv('KEYCLOAK_ADMIN_USER'),
@@ -27,7 +33,42 @@ class Admin_conn:
         return keycloak_admin
 
 class CreateUser(Admin_conn):
-    def __init__(self, email, username, firstName, lastName, secret):
+    """
+    Klasa za kreiranje korisnika sadrzi metode.
+
+    Parametri:
+    ---------------
+        email : str
+
+        username : str
+
+        firstName : str
+
+        lastName : str
+
+        secret : str
+
+            : -> Uzima user input.
+
+    Variable:
+    ---------------
+        email : str
+
+        username : str
+
+        firstName : str
+
+        lastName : str
+
+        secret : str
+
+            : -> Cuvanje user inputa i slanje na Keycloak.
+
+    Rezultat:
+    ---------------
+        : -> New User
+    """
+    def __init__(self, email:str, username:str, firstName:str, lastName:str, secret:str):
         self.email = email
         self.username = username
         self.firstName = firstName
