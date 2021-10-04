@@ -77,6 +77,19 @@ class CreateUser(Admin_conn):
         self.admin = Admin_conn.__init__(self)
 
     def assign_keycloak_roles(self):
+        """
+        Dodaj role korisniku.
+
+        Parametri:
+        ---------------
+            client_id -> Vuce iz docker variable
+
+            user_id -> Argument username : dobija iz variable username
+
+            role_id -> Argumenti : (client_id, role_name : str -> role iz Keycloak panela)
+
+            assign_client_role : Podaci se nalaze u variabli -> Izvrsna komanda daje role korisniku
+        """
         client_id = self.admin.get_client_id(os.getenv('KEYCLOAK_CLIENT_NAME'))
         user_id = self.admin.get_user_id(self.username)
         role_id = self.admin.get_client_role_id(client_id=client_id, role_name="user_role")
