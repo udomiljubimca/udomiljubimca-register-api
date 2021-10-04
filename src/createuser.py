@@ -3,6 +3,12 @@
 Admin_conn omogucava konektovanje ka Keycloak API.
 CreateUser kreiranje korisnika
 """
+
+__all__ = ["CreateUser", "CreateUserUserService"]   # limitiranje sta ce moci da se pozove kao import "javne" klase
+__version__ = "1.6"  # verzija modula
+__author__ = "Milos Zlatkovic"  # autor modula
+
+#block import
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
