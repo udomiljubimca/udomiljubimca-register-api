@@ -113,6 +113,16 @@ class CreateUser(Admin_conn):
             return {"exist" : True, "user_id_keycloak" : user_id_keycloak}
 
     def verify_email(self, user_id_keycloak):
+        """
+        Slanje email verifikacije.
+
+        Parametri:
+        ---------------
+
+            realm_name -> Docker variabla
+
+            send_verify_email : realm_name -> izvrsna komanda slanje verifikacije
+        """
         self.admin.realm_name = os.getenv('CLIENT_RELM_NAME')
         self.admin.send_verify_email(user_id=user_id_keycloak)
         
