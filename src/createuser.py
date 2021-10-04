@@ -127,6 +127,17 @@ class CreateUser(Admin_conn):
         self.admin.send_verify_email(user_id=user_id_keycloak)
         
     def checker(self):
+        """
+        Provera da li je username ili email vec registrovan u Keycloak-u.
+
+        Parametri:
+        ---------------
+            users -> Uzima listu svih usera sa Keycloak-a.
+
+            list_users -> list : proverava listu username-a
+
+            emails -> list : proverava listu email-a 
+        """
         KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                         client_id = os.getenv('KEYCLOAK_CLIENT_NAME'),
                         realm_name = os.getenv('CLIENT_RELM_NAME'),
@@ -146,6 +157,26 @@ class CreateUser(Admin_conn):
             return {"exist" : False}
 
     def new_user(self):
+        """
+        Kreira korisnikas na Keycloak-u.
+
+        Parametri:
+        ---------------
+            email : str
+
+            username : str
+
+            firstName : str
+
+            lastName : str
+
+            secret : str
+
+                : -> dict
+        Rezultat:
+        ---------------
+            : -> New User
+        """
         KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                         client_id = os.getenv('KEYCLOAK_CLIENT_NAME'),
                         realm_name = os.getenv('CLIENT_RELM_NAME'),
@@ -169,6 +200,33 @@ class CreateUser(Admin_conn):
             return {"exist" : False}
     
 class CreateUserUserService():
+    """
+    Slanje requesta na user-service
+
+    Parametri:
+    ---------------
+        email : str
+
+        username : str
+
+        firstName : str
+
+        lastName : str
+
+        secret : str
+
+        about_me : str
+
+        city : str
+
+        age : int
+
+        terms_and_condition_accepted : bool
+
+    Rezultat:
+    ---------------
+        request['POST'] -> json
+    """
     def __init__(self, email, username, firstName, lastName, about_me, city, age, terms_and_condition_accepted):
         self.email = email
         self.username = username
@@ -180,6 +238,16 @@ class CreateUserUserService():
         self.terms_and_condition_accepted = terms_and_condition_accepted
 
     def create_user(self):
+        """
+        Funkcija salje request ka user-service
+
+        Parametri:
+        ---------------
+            url -> Docker variabla
+            
+            data -> user input
+
+        """
         url = '{0}/insert-user'.format(os.getenv('USER_SERVICE_URL'))
         data = {"email" : self.email,"name" : self.firstName,"surname" : self.lastName,"about_me" : self.about_me,"city" : self.city,"age" : self.age,"terms_and_condition_accepted" : self.terms_and_condition_accepted}
         requests.post(url, json = data)
