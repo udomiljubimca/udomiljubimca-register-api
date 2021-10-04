@@ -15,7 +15,7 @@ class Admin_conn:
         
         return keycloak_admin
 
-class CreateUser(Admin_conn):  
+class CreateUser(Admin_conn):
     def __init__(self, email, username, firstName, lastName, secret):
         self.email = email
         self.username = username
