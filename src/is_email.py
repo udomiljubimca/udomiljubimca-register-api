@@ -1,10 +1,20 @@
 import re
 
 class Is_email_valid():
+    """ Provera za email.
+
+    Parametri:
+    ---------------
+        email : str
+    """
     def __init__(self, email):
         self.email = email
 
     def check(self):
+        """Proveravamo specijalne simbole.
+
+            Ako jeste email vracamo True.
+        """
         regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
 
         if (re.search(regex, self.email)):
