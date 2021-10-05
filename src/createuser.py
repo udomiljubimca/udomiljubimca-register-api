@@ -74,7 +74,7 @@ class CreateUser(Admin_conn):
         self.firstName = firstName
         self.lastName = lastName
         self.secret = secret
-        self.admin = Admin_conn.__init__(self)
+        self.admin = Admin_conn.__init__(self)  # deklarisanje konekcije 
 
     def assign_keycloak_roles(self):
         """
@@ -158,7 +158,7 @@ class CreateUser(Admin_conn):
             """ Provera email-a i username-a.
 
                 Dodajemo u listu i pravimo proveru da li postoji neki korisnik sa istim email ili username\
-                    jer su ove informacije jedinstvene na nivou svih korisnikal.
+                    jer su ove informacije jedinstvene na nivou svih korisnika.
             """
             emails.append(x["email"])
             list_users.append(x["username"])
