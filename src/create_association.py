@@ -1,3 +1,14 @@
+""" Klase koje se upotrebljavaju za registrovanje udruzenja.
+
+Admin_conn omogucava konektovanje ka Keycloak API.
+CreateAssociation kreiranje udruzenja
+"""
+
+__all__ = ["CreateAssociation"]   # limitiranje sta ce moci da se pozove kao import "javne" klase
+__version__ = "1.6"  # verzija modula
+__author__ = "Milos Zlatkovic"  # autor modula/klase
+
+#block import
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os
