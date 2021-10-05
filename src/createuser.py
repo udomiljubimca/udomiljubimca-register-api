@@ -93,6 +93,7 @@ class CreateUser(Admin_conn):
         client_id = self.admin.get_client_id(os.getenv('KEYCLOAK_CLIENT_NAME'))
         user_id = self.admin.get_user_id(self.username)
         role_id = self.admin.get_client_role_id(client_id=client_id, role_name="user_role")
+        # assign_client_role zahteva user_id(korisnikov id), client_id(Keycloak panel), id je role_id i ime role je user_role
         self.admin.assign_client_role(user_id, client_id,[{'id' : role_id, 'name':'user_role'}])
 
     def get_keycloak_user_id(self) -> bool:
