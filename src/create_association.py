@@ -15,6 +15,11 @@ import os
 from is_email import Is_email_valid
 
 class Admin_conn:
+    """
+    Klasa koja konektuje na Keycloak admin panel.
+
+    Argumente vuce iz Docker variabli za konekciju.
+    """
     def __init__(self):
         keycloak_admin = KeycloakAdmin(server_url="{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                                     username = os.getenv('KEYCLOAK_ADMIN_USER'),
@@ -25,6 +30,33 @@ class Admin_conn:
         return keycloak_admin
 
 class CreateAssociation(Admin_conn):
+    """
+    Klasa za kreiranje udruzenja sadrzi metode.
+
+    Parametri:
+    ---------------
+        email : str
+
+        username : str
+
+        secret : str
+
+            : -> Uzima user input.
+
+    Variable:
+    ---------------
+        email : str
+
+        username : str
+
+        secret : str
+
+            : -> Cuvanje user inputa i slanje na Keycloak.
+
+    Rezultat:
+    ---------------
+        : -> New Association
+    """
     def __init__(self, email, username, secret):
         self.email = email
         self.username = username
