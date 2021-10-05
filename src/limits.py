@@ -1,3 +1,11 @@
+""" 
+Klase koje se upotrebljavaju za limitiranje.
+"""
+
+__all__ = ["LimitPassword", "LimitUsername"]
+__version__ = "1.1"
+__author__ = "Milos Zlatkovic"
+
 class LimitPassword():
     """ Limitiranje password-a.
 

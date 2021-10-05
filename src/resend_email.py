@@ -1,3 +1,11 @@
+""" 
+Klase koje se upotrebljavaju za slanje email verifikacije ako nije stigla prvi put.
+"""
+
+__all__ = ["Resend_verify_email"]
+__version__ = "1.1"
+__author__ = "Milos Zlatkovic"
+
 from keycloak import KeycloakOpenID
 from keycloak import KeycloakAdmin
 import os

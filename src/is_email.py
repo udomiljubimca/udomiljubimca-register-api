@@ -1,3 +1,11 @@
+""" 
+Klase koje se upotrebljavaju za proveru validnosti email.
+"""
+
+__all__ = ["Is_email_valid"]
+__version__ = "1.1"
+__author__ = "Milos Zlatkovic"
+#block imports
 import re
 
 class Is_email_valid():
