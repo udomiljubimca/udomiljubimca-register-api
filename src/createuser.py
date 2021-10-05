@@ -107,13 +107,14 @@ class CreateUser(Admin_conn):
 
             user_id_keycloak -> username : bool(True), user_id - ima username
         """
+        # user_id_keycloak koristimo za proveru da li je id postojeci korisnik takodje koristimo za verify_email 
         user_id_keycloak = self.admin.get_user_id(self.username)
         if user_id_keycloak == None:
             return {"exist" : False}
         else:
             return {"exist" : True, "user_id_keycloak" : user_id_keycloak}
 
-    def verify_email(self, user_id_keycloak):
+    def verify_email(self, user_id_keycloak:str):
         """
         Slanje email verifikacije.
 
@@ -121,6 +122,8 @@ class CreateUser(Admin_conn):
         ---------------
 
             realm_name -> Docker variabla
+
+            user_id_keycloak -> provera da li user postoji
 
             send_verify_email : realm_name -> izvrsna komanda slanje verifikacije
         """
