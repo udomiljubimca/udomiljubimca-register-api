@@ -5,7 +5,7 @@ CreateUser kreiranje korisnika
 """
 
 __all__ = ["CreateUser", "CreateUserUserService"]   # limitiranje sta ce moci da se pozove kao import "javne" klase
-__version__ = "1.6"  # verzija modula
+__version__ = "1.5"  # verzija modula
 __author__ = "Milos Zlatkovic"  # autor modula/klase
 
 #block import
