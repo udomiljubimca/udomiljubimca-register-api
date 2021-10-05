@@ -128,6 +128,7 @@ class CreateUser(Admin_conn):
             send_verify_email : realm_name -> izvrsna komanda slanje verifikacije
         """
         self.admin.realm_name = os.getenv('CLIENT_RELM_NAME')
+        # user_id_keycloak dobijamo iz prethodne funkcije koju saljemo iz main fajla
         self.admin.send_verify_email(user_id=user_id_keycloak)
         
     def checker(self):
@@ -142,16 +143,23 @@ class CreateUser(Admin_conn):
 
             emails -> list : proverava listu email-a 
         """
+        #  KeycloakOpenID radi sa generalnim stvarima kao sto su(token, policies, permissions..) a KeycloakAdmin sa korisnicima
         KeycloakOpenID(server_url = "{}/auth/".format(os.getenv('KEYCLOAK_URL')),
                         client_id = os.getenv('KEYCLOAK_CLIENT_NAME'),
                         realm_name = os.getenv('CLIENT_RELM_NAME'),
                         client_secret_key = os.getenv('CLIENT_RELM_SECRET')
                         )
-        users = self.admin.get_users()
+        # users sadrzi sve informacije o korisnicima
+        users = self.admin.get_users()  
         emails = []
         list_users = []
 
         for x in users:
+            """ Provera email-a i username-a.
+
+                Dodajemo u listu i pravimo proveru da li postoji neki korisnik sa istim email ili username\
+                    jer su ove informacije jedinstvene na nivou svih korisnikal.
+            """
             emails.append(x["email"])
             list_users.append(x["username"])
 
@@ -188,6 +196,7 @@ class CreateUser(Admin_conn):
                         )
         email_check = Is_email_valid(self.email).check()
         if email_check['exist'] == True:
+            # Kreiranje korisnika zahteva dict za slanje informacija o korisniku i zatim kreira jednog sa poslatim informacijama
             self.admin.create_user({"email": self.email,
                         "username": self.username,
                         "enabled": "True",
@@ -232,6 +241,10 @@ class CreateUserUserService():
         request['POST'] -> json
     """
     def __init__(self, email, username, firstName, lastName, about_me, city, age, terms_and_condition_accepted):
+        """
+            Keycloak za rad zahteva osnovne informacije kao sto su username, email, firstname..\
+                dok baza za user-service sadrzi iste i dodatne kolone.
+        """
         self.email = email
         self.username = username
         self.firstName = firstName
