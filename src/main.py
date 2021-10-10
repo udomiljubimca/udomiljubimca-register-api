@@ -86,6 +86,8 @@ async def register_user(item : ItemUser):
 async def register_association(item : ItemAssociation):
     checkerica = CreateAssociation(item.email, item.username, item.secret).checker()
     checkerica_email = Is_email_valid(item.email).check()
+    checkerica_password = LimitPassword(item.secret).is_password_valid()
+    checkerica_username = LimitUsernameAssociation(item.username).is_username_valid()
     if checkerica_email['exist'] == True and checkerica['exist'] == False and checkerica_password['status'] == True and checkerica_username['status'] == True:
         CreateAssociation(item.email, item.username, item.secret).new_association()
         check_association_id = CreateAssociation(item.email, item.username, item.secret).get_keycloak_user_id()
