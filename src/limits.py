@@ -2,7 +2,7 @@
 Klase koje se upotrebljavaju za limitiranje.
 """
 
-__all__ = ["LimitPassword", "LimitUsername"]
+__all__ = ["LimitPassword", "LimitUsername", "LimitUsernameAssociation"]
 __version__ = "1.1"
 __author__ = "Milos Zlatkovic"
 
@@ -49,6 +49,30 @@ class LimitUsername():
         """
         min = 5
         max = 20
+        if len(self.username) >= min and len(self.username) <= max:
+            return {"status": True}
+        else:
+            return {"status": False}
+
+class LimitUsernameAssociation():
+    """ Limitiranje username-a.
+
+    Parametri:
+    ---------------
+        username : str
+
+    Rezultat:
+    ---------------
+        username valid : -> True
+    """
+    def __init__(self, username):
+        self.username = username
+    def is_username_valid(self):
+        """
+        Username je limitiran na minimalno 5 i maksimalno 40 karaktera.
+        """
+        min = 5
+        max = 40
         if len(self.username) >= min and len(self.username) <= max:
             return {"status": True}
         else:
