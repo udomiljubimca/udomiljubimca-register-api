@@ -10,7 +10,7 @@ from typing import Optional
 from create_association import CreateAssociation
 from is_email import Is_email_valid
 import json
-from limits import LimitPassword, LimitUsername
+from limits import LimitPassword, LimitUsername, LimitUsernameAssociation
 logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
